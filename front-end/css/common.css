@@ -1,0 +1,19 @@
+.page {
+    height: 100vh;
+    background-color: rgb(247,259,248);
+}
+
+.loginContent {
+    background: #fff;
+    box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.25);
+    border-radius: 5px;
+}
+
+.auth-form {
+    padding: 60px 60px;
+}
+
+#loginBtn {
+    margin-top: 25px;
+    padding: 10px;
+}
