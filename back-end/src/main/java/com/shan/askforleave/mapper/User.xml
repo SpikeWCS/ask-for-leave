@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shan.askforleave.mapper.UserMapper">
+    <insert id="add" parameterType="User">
+        insert into user (username, password, role, name, gender)
+        values (#{username}, #{password}, #{role}, #{name}, #{gender})
+    </insert>
+
+    <delete id="delete" parameterType="User">
+        delete from user where id= #{id}
+    </delete>
+
+    <select id="get" parameterType="_int" resultType="User">
+        select * from user where id= #{id}
+    </select>
+
+    <select id="list" resultType="User">
+        select * from user
+    </select>
+</mapper>
