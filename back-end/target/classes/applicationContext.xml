@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!--注册了许多容器 从而Spring可以识别注解-->
+    <context:annotation-config></context:annotation-config>
+    <context:component-scan base-package="com.shan.askforleave.service"/>
+
+
+    <!--配置数据源-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/ask_for_name?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;serverTimezone=UTC"></property>
+        <property name="user" value="root"></property>
+        <property name="password" value="aa770119"></property>
+    </bean>
+    <!--扫描存放 sql 语句的 xml-->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="typeAliasesPackage" value="com.shan.askforleave.pojo"/>
+        <property name="dataSource" ref="dataSource" />
+        <property name="mapperLocations" value="classpath:/mapper/*.xml"/>
+    </bean>
+    <!--扫描mapper 并将其放入spring生命周期管理-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.shan.askforleave.mapper"/>
+    </bean>
 </beans>

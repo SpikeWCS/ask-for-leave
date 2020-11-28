@@ -13,7 +13,7 @@
         delete from user where id= #{id}
     </delete>
 
-    <select id="get" parameterType="_int" resultType="User">
+    <select id="get" parameterType="Integer" resultType="User">
         select * from user where id= #{id}
     </select>
 
