@@ -15,5 +15,5 @@ public interface UserMapper {
 
     List<User> list();
 
-
+    User getByUsernameAndPassword(String username, String password);
 }

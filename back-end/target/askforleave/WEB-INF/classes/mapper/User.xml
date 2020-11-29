@@ -20,4 +20,8 @@
     <select id="list" resultType="User">
         select * from user
     </select>
+
+    <select id="getByUsernameAndPassword" resultType="User">
+        select * from user where username = #{arg0} and password = #{arg1}
+    </select>
 </mapper>

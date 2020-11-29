@@ -20,4 +20,10 @@ public class UserServiceImpl implements UserService{
         System.out.println("user"+ user);
         return userMapper.list();
     }
+
+    @Override
+    public User getByUsernameAndPassword(String username, String password) {
+        System.out.println("username: "+username+"   password: " + password);
+        return userMapper.getByUsernameAndPassword(username, password);
+    }
 }
