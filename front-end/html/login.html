@@ -14,10 +14,8 @@
     <script src="../js/bootstrap-4/js/bootstrap.bundle.min.js"></script>
     <script src="../js/bootstrap-4/js/bootstrap.bundle.min.js"></script>
     <script src="../js/vue-2.6.12/vue.min.js"></script>
-    <!-- 引入样式 -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-    <!-- 引入组件库 -->
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="https://how2j.cn/study/axios.min.js"></script>
+
 </head>
 <body>
     <div class="container-fluid h-100">
@@ -26,40 +24,40 @@
                 <div class="loginContent">
                     <div class="row no-gutters">
                         <div class="col-xl-12">
-                            <div class=" auth-form">
+                            <div class=" auth-form" id="workingArea">
                                 <h4 class="text-center mb-4">请登录</h4>
-                                <form action="index.html">
+
                                     <div class="form-group">
                                         <label class="mb-1"><strong>账号</strong></label>
-                                        <input type="email" class="form-control" value="" placeholder="请输入您的账号">
+                                        <input type="text" class="form-control" value="" placeholder="请输入您的账号" v-model="user.username">
                                     </div>
                                     <div class="form-group">
                                         <label class="mb-1"><strong>密码</strong></label>
-                                        <input type="password" class="form-control" value="" placeholder="请输入您的密码">
+                                        <input type="password" class="form-control" value="" placeholder="请输入您的密码" v-model="user.password">
                                     </div>
                                     <div class="form-row d-flex justify-content-between mt-4 mb-2">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="ruleRadios" id="ruleRadio1" value="rule1">
-                                            <label class="form-check-label" for="ruleRadio1">一般员工</label>
+                                            <input class="form-check-input" type="radio" name="ruleRadios" id="roleRadio1" value="0" v-model="user.role">
+                                            <label class="form-check-label" for="roleRadio1">一般员工</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="ruleRadios" id="ruleRadio2" value="rule2">
-                                            <label class="form-check-label" for="ruleRadio1">部门经理</label>
+                                            <input class="form-check-input" type="radio" name="ruleRadios" id="roleRadio2" value="1" v-model="user.role">
+                                            <label class="form-check-label" for="roleRadio2">部门经理</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="ruleRadios" id="ruleRadio3" value="rule3">
-                                            <label class="form-check-label" for="ruleRadio1">总经理</label>
+                                            <input class="form-check-input" type="radio" name="ruleRadios" id="roleRadio3" value="2" v-model="user.role">
+                                            <label class="form-check-label" for="roleRadio3">总经理</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="ruleRadios" id="ruleRadio4" value="rule4">
-                                            <label class="form-check-label" for="ruleRadio1">人事科</label>
+                                            <input class="form-check-input" type="radio" name="ruleRadios" id="roleRadio4" value="3" v-model="user.role">
+                                            <label class="form-check-label" for="roleRadio4">人事科</label>
                                         </div>
 
                                     </div>
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-success btn-block" id="loginBtn">登录</button>
+                                        <button type="" class="btn btn-success btn-block" id="loginBtn" @click="login">登录</button>
                                     </div>
-                                </form>
+
                             </div>
 
                         </div>
@@ -72,13 +70,42 @@
     </div>
 </body>
 <script>
-    var a = {"name": "xxx", "age": 16};
+    $(function () {
+        var data4Vue = {
+            uri: 'login',
+            result: [],
+            user: {username: '', password: '', role: ''}
+        };
+        // ViewModel
+        var vue = new Vue({
+            el: "#workingArea",
+            data: data4Vue,
+            methods: {
+                login:function () {
 
-    new Vue({
-        el: '#div1',
-        data: {
-            message: a
-        }
+                    var url = "http://localhost:8080/" + this.uri;
+                    // var url = "http://localhost:8080/login?username=000001&password=123456&role=0"
+                    if(0 == this.user.username.length) {
+                        alert("请输入用户名");
+                        return ;
+                    }
+                    if(0 == this.user.password.length) {
+                        alert("请输入密码");
+                        return ;
+                    }
+                    axios.post(url, this.user).then(function (response) {
+                        alert(response)
+                        var result = response.data;
+                        if(result.code == 0) {
+                            alert(result.data)
+                            this.user.username = result.data.username
+                        }else {
+                            alert(result.message)
+                        }
+                    })
+                }
+            }
+        })
     })
 </script>
 </html>
