@@ -83,8 +83,8 @@
             methods: {
                 login:function () {
 
-                    // var url = "http://localhost:8080/" + this.uri;
-                    var url = "http://localhost:8080/login?username=000001&password=123456&role=0"
+                    var url = "http://localhost:8080/" + this.uri + "?username=" + this.user.username+"&password="+this.user.password+"&role="+this.user.role;
+                    //var url = "http://localhost:8080/login?username=000001&password=123456&role=0"
                     if(0 == this.user.username.length) {
                         alert("请输入用户名");
                         return ;
@@ -93,13 +93,14 @@
                         alert("请输入密码");
                         return ;
                     }
-                    axios.post(url, this.user).then(function (response) {
-                        alert(response)
-                        this.result = response.data;
+                    axios.post(url).then(function (response) {
+                        this.result = JSON.parse(JSON.stringify(response.data));
                         console.log(JSON.parse(JSON.stringify(response.data))['data']);
-                        if(result.code == 0) {
-                            console.log(this.result.data + "000000")
-                            this.user.username = result.data.username
+                        if(this.result['code'] == 0) {
+                            console.log(this.result['data']['username'])
+                            if(this.result['data']['role'] == 0) {
+                                location.href="employee_page";
+                            }
                         }else {
                             alert(result.message)
                         }
