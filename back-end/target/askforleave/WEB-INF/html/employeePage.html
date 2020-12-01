@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <link  href="/static/css/common.css" rel="stylesheet" type="text/css" >
+
+
+    <script src="/static/js/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+    <link href="/static/js/bootstrap-4/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/static/js/bootstrap-4/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/bootstrap-4/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/vue-2.6.12/vue.min.js"></script>
+    <script src="https://how2j.cn/study/axios.min.js"></script>
 </head>
 <body>
 <h2>employeePage!!!!</h2>
+<script>
+    var url = "listUser";
+    axios.get(url).then(function (response) {
+        var result = JSON.parse(JSON.stringify(response.data));
+        console.log(result);
+
+    })
+</script>
 </body>
 </html>
