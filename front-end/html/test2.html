@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui@2.14.1/lib/theme-chalk/index.css">
+    <script src="../js/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+    <script src="../js/vue-2.6.12/vue.min.js"></script>
+
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui@2.14.1/lib/index.js"></script>
+
+</head>
+
+<body>
+<el-calendar v-model="value" id="calendar">
+    <!-- 这里使用的是 2.5 slot 语法，对于新项目请使用 2.6 slot 语法-->
+    <template
+            slot="dateCell"
+            slot-scope="{date, data}">
+        <!--自定义内容-->
+        <div>
+            <div class="calendar-day">{{ data.day.split('-').slice(2).join('-') }}</div>
+            <div v-for="item in calendarData">
+                <div v-if="(item.months).indexOf(data.day.split('-').slice(1)[0])!=-1">
+                    <div v-if="(item.days).indexOf(data.day.split('-').slice(2).join('-'))!=-1">
+                        <el-tooltip class="item" effect="dark" :content="item.things" placement="right">
+                            <div class="is-selected">{{item.things}}</div>
+                        </el-tooltip>
+                    </div>
+                    <div v-else></div>
+                </div>
+                <div v-else></div>
+            </div>
+        </div>
+    </template>
+</el-calendar>
+
+<script>
+    export default {
+        name: "calendar",
+        data(){
+            return {
+                calendarData: [
+                    { months: ['09', '11'],days: ['15'],things: '看电影' },
+                    { months: ['10', '11'], days: ['02'],things: '去公园野炊' },
+                    { months: ['11'], days: ['02'],things: '看星星' },
+                    { months: ['11'], days: ['02'],things: '看月亮' }
+                ],
+                value: new Date()
+            }
+        }
+    }
+</script>
+<style>
+    .calendar-day{
+        text-align: center;
+        color: #202535;
+        line-height: 30px;
+        font-size: 12px;
+    }
+    .is-selected{
+        color: #F8A535;
+        font-size: 10px;
+        margin-top: 5px;
+    }
+    #calendar .el-button-group>.el-button:not(:first-child):not(:last-child):after{
+        content: '当月';
+    }
+</style>
+</body>

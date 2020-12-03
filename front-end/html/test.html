@@ -1,19 +1,267 @@
-<script src="https://how2j.cn/study/axios.min.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui@2.14.1/lib/theme-chalk/index.css">
+    <script src="../js/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+    <script src="../js/vue-2.6.12/vue.min.js"></script>
 
-<div id="hero">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui@2.14.1/lib/index.js"></script>
 
+</head>
+<style>
+    .el-row {
+    }
+    .el-col {
+        border-radius: 4px;
+    }
+
+    .el-aside {
+        color: #333;
+        text-align: center;
+    }
+
+    .el-main {
+        background-color: #E9EEF3;
+        color: #333;
+        text-align: center;
+    }
+
+
+
+    .content {
+        /*background: #99a9bf;*/
+        height: 100px;
+        border-bottom: 1px solid gray;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .contentTitle {
+        float: left;
+    }
+    a {
+        text-decoration: none;
+    }
+    .bg-purple {
+        background: #d3dce6;
+    }
+    .grid-content {
+        border-radius: 4px;
+        min-height: 36px;
+    }
+    .itemDiv {
+        float: left;
+        margin-right: 13px;
+    }
+    .item {
+        margin-right: 5px;
+    }
+    .itemText {
+        font-size: 13px;
+    }
+    a {
+        color: black;
+    }
+
+    .headImage {
+        margin-top: 20px;
+    }
+
+    #name {
+        font-family: "PingFang SC";
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    #search {
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+
+    }
+
+    .topHeadImage {
+    }
+
+    .topBar {
+        height: 150px;
+    }
+
+    .calCard{
+        margin-left: 20px;
+    }
+
+    .box-card {
+        margin-bottom: 20px;
+    }
+</style>
+<body>
+<div id="app">
+    <el-container>
+        <el-aside width="240px">
+            <el-row class="tac">
+
+                <el-col :span="24">
+                    <div class="headImage">
+                        <div class="block">
+                            <el-avatar :size="50" :src="circleUrl" @error="headImageError">
+                                <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"/>
+                            </el-avatar>
+                        </div>
+                    </div> <!-- 头像 -->
+                    <div id="name">
+                        <p>王春杉</p>
+                    </div>
+                    <div id="location" >
+                        <i class="el-icon-location-outline"></i>
+                        <span slot="title">TianJin, China</span>
+                    </div>
+                    <div id="search">
+                        <el-input size="small" v-model="input" placeholder="请输入内容" prefix-icon="el-icon-search"></el-input>
+                    </div>
+
+                    <el-menu
+                            default-active="1"
+                            class="leftMenu"
+                            @open="handleOpen"
+                            @close="handleClose"
+                            @select="handleLeftMenuSelect">
+                        <el-menu-item index="1">
+                            <i class="el-icon-s-home"></i>
+                            <span slot="title">首页</span>
+                        </el-menu-item>
+                        <el-menu-item index="2">
+                            <i class="el-icon-menu"></i>
+                            <span slot="title">归档</span>
+                        </el-menu-item>
+                        <el-menu-item index="3" >
+                            <i class="el-icon-document"></i>
+                            <span slot="title">分类</span>
+                        </el-menu-item>
+                        <el-menu-item index="4">
+                            <i class="el-icon-price-tag"></i>
+                            <span slot="title">标签</span>
+                        </el-menu-item>
+                        <el-menu-item index="5">
+                            <i class="el-icon-coordinate"></i>
+                            <span slot="title">项目</span>
+                        </el-menu-item>
+                        <el-menu-item index="6">
+                            <i class="el-icon-s-custom"></i>
+                            <span slot="title">关于</span>
+                        </el-menu-item>
+                    </el-menu> <!-- 分类标签 -->
+                </el-col>
+
+            </el-row>
+        </el-aside>
+        <el-container>
+            <el-main>
+                <div>
+                    <el-row>
+                        <el-col :span="8">
+
+                            <el-row>
+                                <el-col :span="24">
+                                    <el-card class="box-card">
+                                        <div class="daysDiv">
+                                            您已连续签到：
+                                        </div>
+                                        <el-divider><i class="el-icon-mobile-phone"></i></el-divider>
+                                        <div>
+                                            9 天
+                                        </div>
+                                    </el-card>
+                                </el-col>
+                            </el-row>
+
+                            <el-row>
+                                <el-col :span="24">
+                                    <el-card class="box-card">
+                                        <div v-for="o in 4" :key="o" class="text item">
+                                            {{'列表内容 ' + o }}
+                                        </div>
+                                    </el-card>
+                                </el-col>
+                            </el-row>
+
+                            <el-row>
+                                <el-col :span="24">
+                                    <el-card class="box-card">
+                                        <div v-for="o in 4" :key="o" class="text item">
+                                            {{'列表内容 ' + o }}
+                                        </div>
+                                    </el-card>
+                                </el-col>
+                            </el-row>
+
+
+                        </el-col>
+                        <el-col :span="15">
+                            <el-card class="calCard">
+                                <div class="calendarDiv">
+                                    <el-calendar>
+                                        <template
+                                                slot="dateCell"
+                                                slot-scope="{date, data}">
+                                            <p>
+                                                {{ data.day.split('-').slice(1).join('-') }} <br> {{dealMyDate(data.day)}}
+                                            </p>
+                                        </template>
+                                    </el-calendar>
+                                </div>
+
+                            </el-card>
+
+                        </el-col>
+                    </el-row>
+                </div>
+            </el-main>
+            <el-footer>Footer</el-footer>
+        </el-container>
+    </el-container>
 </div>
 
-<script>
-    // var url = "http://how2j.cn/study/json.txt"
-    // axios.get(url).then(function(response) {
-    //     var jsonObject = response.data;
-    //     var jsonString = JSON.stringify(jsonObject)
-    //     document.getElementById("hero").innerHTML = "通过 axios 获取到的json数据："+ jsonString;
-    // })
-    var url = "http://localhost:8080/login?username=000001&password=123456&role=0";
 
-    axios.get(url).then(function (response) {
-        alert(response.data)
+</body>
+
+<script>
+    var data4CalVue = {
+        uri: 'login',
+        result: [
+            {"date":"2020-12-01","content":"放假"},
+            {"date":"2020-12-02","content":"去交电费"},
+            {"date":"2020-11-03","content":"去学习vue"}
+        ],
+        user: {username: '', password: '', role: 0}
+    };
+    new Vue({
+        el: '#app',
+        data: data4CalVue,
+        methods: {
+            dealMyDate: function (v) {
+                let len = this.result.length;
+                let res = "";
+                for (let i = 0; i < len; i++) {
+                    console.log("result:");
+                    console.log(this.result[i].date);
+                    console.log("vvvvvvv");
+                    console.log(v)
+                    if (this.result[i].date == v) {
+                        res = this.result[i].content;
+                        return '✔️'
+                    }
+                }
+                return res
+            }
+
+        }
     })
+
 </script>
+</html>

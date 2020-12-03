@@ -13,15 +13,26 @@
     <script src="/static/js/bootstrap-4/js/bootstrap.bundle.min.js"></script>
     <script src="/static/js/vue-2.6.12/vue.min.js"></script>
     <script src="https://how2j.cn/study/axios.min.js"></script>
+
+
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
-<h2>employeePage!!!!</h2>
+<div id="app">
+    <el-button @click="visible = true">Button</el-button>
+    <el-dialog :visible.sync="visible" title="Hello world">
+        <p>Try Element</p>
+    </el-dialog>
+</div>
 <script>
-    var url = "listUser";
-    axios.get(url).then(function (response) {
-        var result = JSON.parse(JSON.stringify(response.data));
-        console.log(result);
-
+    new Vue({
+        el: '#app',
+        data: function() {
+            return { visible: false }
+        }
     })
 </script>
 </body>
