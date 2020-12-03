@@ -99,6 +99,21 @@
     .box-card {
         margin-bottom: 20px;
     }
+
+    .daysDiv {
+        font-size: 25px;
+    }
+
+    .daysNumDiv {
+        font-size: 30px;
+        color: #005cbf
+    }
+
+    .jiaQiJinDuDiv {
+        height: 150px;
+    }
+
+    .e
 </style>
 <body>
 <div id="app">
@@ -164,33 +179,37 @@
             <el-main>
                 <div>
                     <el-row>
-                        <el-col :span="8">
+                        <el-col :span="9">
 
                             <el-row>
                                 <el-col :span="24">
                                     <el-card class="box-card">
-                                        <div class="daysDiv">
-                                            您已连续签到：
+                                        <div class="daysDiv" font-family="PingFang SC">
+                                            您已连续签到
                                         </div>
-                                        <el-divider><i class="el-icon-mobile-phone"></i></el-divider>
-                                        <div>
-                                            9 天
+                                        <el-divider><i class="el-icon-mobile-phone" style="color: #005cbf"></i></el-divider>
+                                        <div class="daysNumDiv">
+                                            9 days
                                         </div>
                                     </el-card>
                                 </el-col>
                             </el-row>
 
-                            <el-row>
+                            <el-row type="flex">
                                 <el-col :span="24">
-                                    <el-card class="box-card">
-                                        <div v-for="o in 4" :key="o" class="text item">
-                                            {{'列表内容 ' + o }}
+                                    <el-card class="box-card" >
+                                        <div style="text-align: left">
+                                            <el-progress :text-inside="true" :stroke-width="26" :percentage="70" style="margin-bottom: 10px"></el-progress>
+                                            <el-progress :text-inside="true" :stroke-width="24" :percentage="100" status="success" style="margin-bottom: 10px"></el-progress>
+                                            <el-progress :text-inside="true" :stroke-width="22" :percentage="80" status="warning" style="margin-bottom: 10px"></el-progress>
+                                            <el-progress :text-inside="true" :stroke-width="20" :percentage="50" status="exception"></el-progress>
                                         </div>
+
                                     </el-card>
                                 </el-col>
                             </el-row>
 
-                            <el-row>
+                            <el-row >
                                 <el-col :span="24">
                                     <el-card class="box-card">
                                         <div v-for="o in 4" :key="o" class="text item">
