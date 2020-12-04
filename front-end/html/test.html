@@ -113,7 +113,6 @@
         height: 150px;
     }
 
-    .e
 </style>
 <body>
 <div id="app">
@@ -177,69 +176,7 @@
         </el-aside>
         <el-container>
             <el-main>
-                <div>
-                    <el-row>
-                        <el-col :span="9">
-
-                            <el-row>
-                                <el-col :span="24">
-                                    <el-card class="box-card">
-                                        <div class="daysDiv" font-family="PingFang SC">
-                                            您已连续签到
-                                        </div>
-                                        <el-divider><i class="el-icon-mobile-phone" style="color: #005cbf"></i></el-divider>
-                                        <div class="daysNumDiv">
-                                            9 days
-                                        </div>
-                                    </el-card>
-                                </el-col>
-                            </el-row>
-
-                            <el-row type="flex">
-                                <el-col :span="24">
-                                    <el-card class="box-card" >
-                                        <div style="text-align: left">
-                                            <el-progress :text-inside="true" :stroke-width="26" :percentage="70" style="margin-bottom: 10px"></el-progress>
-                                            <el-progress :text-inside="true" :stroke-width="24" :percentage="100" status="success" style="margin-bottom: 10px"></el-progress>
-                                            <el-progress :text-inside="true" :stroke-width="22" :percentage="80" status="warning" style="margin-bottom: 10px"></el-progress>
-                                            <el-progress :text-inside="true" :stroke-width="20" :percentage="50" status="exception"></el-progress>
-                                        </div>
-
-                                    </el-card>
-                                </el-col>
-                            </el-row>
-
-                            <el-row >
-                                <el-col :span="24">
-                                    <el-card class="box-card">
-                                        <div v-for="o in 4" :key="o" class="text item">
-                                            {{'列表内容 ' + o }}
-                                        </div>
-                                    </el-card>
-                                </el-col>
-                            </el-row>
-
-
-                        </el-col>
-                        <el-col :span="15">
-                            <el-card class="calCard">
-                                <div class="calendarDiv">
-                                    <el-calendar>
-                                        <template
-                                                slot="dateCell"
-                                                slot-scope="{date, data}">
-                                            <p>
-                                                {{ data.day.split('-').slice(1).join('-') }} <br> {{dealMyDate(data.day)}}
-                                            </p>
-                                        </template>
-                                    </el-calendar>
-                                </div>
-
-                            </el-card>
-
-                        </el-col>
-                    </el-row>
-                </div>
+                <main-page></main-page>
             </el-main>
             <el-footer>Footer</el-footer>
         </el-container>
@@ -250,6 +187,96 @@
 </body>
 
 <script>
+
+    Vue.component('main-page', {
+        template: '<div>\n' +
+            '                    <el-row>\n' +
+            '                        <el-col :span="9">\n' +
+            '\n' +
+            '                            <el-row>\n' +
+            '                                <el-col :span="24">\n' +
+            '                                    <el-card class="box-card">\n' +
+            '                                        <div class="daysDiv" font-family="PingFang SC">\n' +
+            '                                            您已连续签到\n' +
+            '                                        </div>\n' +
+            '                                        <el-divider><i class="el-icon-mobile-phone" style="color: #005cbf"></i></el-divider>\n' +
+            '                                        <div class="daysNumDiv">\n' +
+            '                                            9 days\n' +
+            '                                        </div>\n' +
+            '                                    </el-card>\n' +
+            '                                </el-col>\n' +
+            '                            </el-row>\n' +
+            '\n' +
+            '                            <el-row type="flex">\n' +
+            '                                <el-col :span="24">\n' +
+            '                                    <el-card class="box-card" >\n' +
+            '                                        <div style="text-align: left">\n' +
+            '                                            <el-progress :text-inside="true" :stroke-width="26" :percentage="70" style="margin-bottom: 10px"></el-progress>\n' +
+            '                                            <el-progress :text-inside="true" :stroke-width="24" :percentage="100" status="success" style="margin-bottom: 10px"></el-progress>\n' +
+            '                                            <el-progress :text-inside="true" :stroke-width="22" :percentage="80" status="warning" style="margin-bottom: 10px"></el-progress>\n' +
+            '                                            <el-progress :text-inside="true" :stroke-width="20" :percentage="50" status="exception"></el-progress>\n' +
+            '                                        </div>\n' +
+            '\n' +
+            '                                    </el-card>\n' +
+            '                                </el-col>\n' +
+            '                            </el-row>\n' +
+            '\n' +
+            '                            <el-row >\n' +
+            '                                <el-col :span="24">\n' +
+            '                                    <el-card class="box-card">\n' +
+            '                                        <div v-for="o in 4" :key="o" class="text item">\n' +
+            '                                            {{\'列表内容 \' + o }}\n' +
+            '                                        </div>\n' +
+            '                                    </el-card>\n' +
+            '                                </el-col>\n' +
+            '                            </el-row>\n' +
+            '\n' +
+            '\n' +
+            '                        </el-col>\n' +
+            '                        <el-col :span="15">\n' +
+            '                            <el-card class="calCard">\n' +
+            '                                <div class="calendarDiv">\n' +
+            '                                    <el-calendar>\n' +
+            '                                        <template slot="dateCell"  slot-scope="{date, data}">\n' +
+            '                                            <p>\n' +
+            '                                                {{ data.day.split(\'-\').slice(1).join(\'-\') }} <br/> {{dealMyDate(data.day) }}' +
+            '                                            </p>\n' +
+            '                                        </template>\n' +
+            '                                    </el-calendar>\n' +
+            '                                </div>\n' +
+            '\n' +
+            '                            </el-card>\n' +
+            '\n' +
+            '                        </el-col>\n' +
+            '                    </el-row>\n' +
+            '                </div>'
+        ,
+        data: function () {
+            return {
+                result: [
+                    {"date":"2020-12-01","content":"放假"},
+                    {"date":"2020-12-02","content":"去交电费"},
+                    {"date":"2020-11-03","content":"去学习vue"}
+                ]
+            }
+        },
+
+        methods: {
+            dealMyDate(v) {
+                let len = this.result.length;
+                let res = "";
+                for (let i = 0; i < len; i++) {
+
+                    if (this.result[i].date == v) {
+                        res = this.result[i].content;
+                        return '✔️'
+                    }
+                }
+                return res
+            }
+        }
+    });
+
     var data4CalVue = {
         uri: 'login',
         result: [
@@ -263,6 +290,8 @@
         el: '#app',
         data: data4CalVue,
         methods: {
+
+
             dealMyDate: function (v) {
                 let len = this.result.length;
                 let res = "";

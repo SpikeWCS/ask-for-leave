@@ -13,61 +13,303 @@
     <script src="https://unpkg.com/element-ui@2.14.1/lib/index.js"></script>
 
 </head>
+<style>
+    .el-row {
+    }
+    .el-col {
+        border-radius: 4px;
+    }
 
+    .el-aside {
+        color: #333;
+        text-align: center;
+    }
+
+    .el-main {
+        background-color: #E9EEF3;
+        color: #333;
+        text-align: center;
+    }
+
+
+
+    .content {
+        /*background: #99a9bf;*/
+        height: 100px;
+        border-bottom: 1px solid gray;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .contentTitle {
+        float: left;
+    }
+    a {
+        text-decoration: none;
+    }
+    .bg-purple {
+        background: #d3dce6;
+    }
+    .grid-content {
+        border-radius: 4px;
+        min-height: 36px;
+    }
+    .itemDiv {
+        float: left;
+        margin-right: 13px;
+    }
+    .item {
+        margin-right: 5px;
+    }
+    .itemText {
+        font-size: 13px;
+    }
+    a {
+        color: black;
+    }
+
+    .headImage {
+        margin-top: 20px;
+    }
+
+    #name {
+        font-family: "PingFang SC";
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    #search {
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+
+    }
+
+    .topHeadImage {
+    }
+
+    .topBar {
+        height: 150px;
+    }
+
+    .calCard{
+        margin-left: 20px;
+    }
+
+    .box-card {
+        margin-bottom: 20px;
+    }
+
+    .daysDiv {
+        font-size: 25px;
+    }
+
+    .daysNumDiv {
+        font-size: 30px;
+        color: #005cbf
+    }
+
+    .jiaQiJinDuDiv {
+        height: 150px;
+    }
+
+</style>
 <body>
-<el-calendar v-model="value" id="calendar">
-    <!-- 这里使用的是 2.5 slot 语法，对于新项目请使用 2.6 slot 语法-->
-    <template
-            slot="dateCell"
-            slot-scope="{date, data}">
-        <!--自定义内容-->
-        <div>
-            <div class="calendar-day">{{ data.day.split('-').slice(2).join('-') }}</div>
-            <div v-for="item in calendarData">
-                <div v-if="(item.months).indexOf(data.day.split('-').slice(1)[0])!=-1">
-                    <div v-if="(item.days).indexOf(data.day.split('-').slice(2).join('-'))!=-1">
-                        <el-tooltip class="item" effect="dark" :content="item.things" placement="right">
-                            <div class="is-selected">{{item.things}}</div>
-                        </el-tooltip>
+<div id="app">
+    <el-container>
+        <el-aside width="240px">
+            <el-row class="tac">
+
+                <el-col :span="24">
+                    <div class="headImage">
+                        <div class="block">
+                            <el-avatar :size="50" :src="circleUrl" @error="headImageError">
+                                <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"/>
+                            </el-avatar>
+                        </div>
+                    </div> <!-- 头像 -->
+                    <div id="name">
+                        <p>王春杉</p>
                     </div>
-                    <div v-else></div>
-                </div>
-                <div v-else></div>
-            </div>
-        </div>
-    </template>
-</el-calendar>
+                    <div id="location" >
+                        <i class="el-icon-location-outline"></i>
+                        <span slot="title">TianJin, China</span>
+                    </div>
+                    <div id="search">
+                        <el-input size="small" v-model="input" placeholder="请输入内容" prefix-icon="el-icon-search"></el-input>
+                    </div>
+
+                    <el-menu
+                            default-active="1"
+                            class="leftMenu"
+                            @open="handleOpen"
+                            @close="handleClose"
+                            @select="handleLeftMenuSelect">
+                        <el-menu-item index="1">
+                            <i class="el-icon-s-home"></i>
+                            <span slot="title">首页</span>
+                        </el-menu-item>
+                        <el-menu-item index="2">
+                            <i class="el-icon-menu"></i>
+                            <span slot="title">归档</span>
+                        </el-menu-item>
+                        <el-menu-item index="3" >
+                            <i class="el-icon-document"></i>
+                            <span slot="title">分类</span>
+                        </el-menu-item>
+                        <el-menu-item index="4">
+                            <i class="el-icon-price-tag"></i>
+                            <span slot="title">标签</span>
+                        </el-menu-item>
+                        <el-menu-item index="5">
+                            <i class="el-icon-coordinate"></i>
+                            <span slot="title">项目</span>
+                        </el-menu-item>
+                        <el-menu-item index="6">
+                            <i class="el-icon-s-custom"></i>
+                            <span slot="title">关于</span>
+                        </el-menu-item>
+                    </el-menu> <!-- 分类标签 -->
+                </el-col>
+
+            </el-row>
+        </el-aside>
+        <el-container>
+            <el-main>
+                <main-page></main-page>
+            </el-main>
+            <el-footer>Footer</el-footer>
+        </el-container>
+    </el-container>
+</div>
+
+
+</body>
 
 <script>
-    export default {
-        name: "calendar",
-        data(){
+
+    Vue.component('main-page', {
+        template: '<div>\n' +
+            '                    <el-row>\n' +
+            '                        <el-col :span="9">\n' +
+            '\n' +
+            '                            <el-row>\n' +
+            '                                <el-col :span="24">\n' +
+            '                                    <el-card class="box-card">\n' +
+            '                                        <div class="daysDiv" font-family="PingFang SC">\n' +
+            '                                            您已连续签到\n' +
+            '                                        </div>\n' +
+            '                                        <el-divider><i class="el-icon-mobile-phone" style="color: #005cbf"></i></el-divider>\n' +
+            '                                        <div class="daysNumDiv">\n' +
+            '                                            9 days\n' +
+            '                                        </div>\n' +
+            '                                    </el-card>\n' +
+            '                                </el-col>\n' +
+            '                            </el-row>\n' +
+            '\n' +
+            '                            <el-row type="flex">\n' +
+            '                                <el-col :span="24">\n' +
+            '                                    <el-card class="box-card" >\n' +
+            '                                        <div style="text-align: left">\n' +
+            '                                            <el-progress :text-inside="true" :stroke-width="26" :percentage="70" style="margin-bottom: 10px"></el-progress>\n' +
+            '                                            <el-progress :text-inside="true" :stroke-width="24" :percentage="100" status="success" style="margin-bottom: 10px"></el-progress>\n' +
+            '                                            <el-progress :text-inside="true" :stroke-width="22" :percentage="80" status="warning" style="margin-bottom: 10px"></el-progress>\n' +
+            '                                            <el-progress :text-inside="true" :stroke-width="20" :percentage="50" status="exception"></el-progress>\n' +
+            '                                        </div>\n' +
+            '\n' +
+            '                                    </el-card>\n' +
+            '                                </el-col>\n' +
+            '                            </el-row>\n' +
+            '\n' +
+            '                            <el-row >\n' +
+            '                                <el-col :span="24">\n' +
+            '                                    <el-card class="box-card">\n' +
+            '                                        <div v-for="o in 4" :key="o" class="text item">\n' +
+            '                                            {{\'列表内容 \' + o }}\n' +
+            '                                        </div>\n' +
+            '                                    </el-card>\n' +
+            '                                </el-col>\n' +
+            '                            </el-row>\n' +
+            '\n' +
+            '\n' +
+            '                        </el-col>\n' +
+            '                        <el-col :span="15">\n' +
+            '                            <el-card class="calCard">\n' +
+            '                                <div class="calendarDiv">\n' +
+            '                                    <el-calendar>\n' +
+            '                                        <template slot="dateCell"  slot-scope="{date, data}">\n' +
+            '                                            <p>\n' +
+            '                                                {{ data.day.split(\'-\').slice(1).join(\'-\') }} <br/> {{dealMyDate(data.day) }}' +
+            '                                            </p>\n' +
+            '                                        </template>\n' +
+            '                                    </el-calendar>\n' +
+            '                                </div>\n' +
+            '\n' +
+            '                            </el-card>\n' +
+            '\n' +
+            '                        </el-col>\n' +
+            '                    </el-row>\n' +
+            '                </div>'
+            ,
+        data: function () {
             return {
-                calendarData: [
-                    { months: ['09', '11'],days: ['15'],things: '看电影' },
-                    { months: ['10', '11'], days: ['02'],things: '去公园野炊' },
-                    { months: ['11'], days: ['02'],things: '看星星' },
-                    { months: ['11'], days: ['02'],things: '看月亮' }
-                ],
-                value: new Date()
+                result: [
+                    {"date":"2020-12-01","content":"放假"},
+                    {"date":"2020-12-02","content":"去交电费"},
+                    {"date":"2020-11-03","content":"去学习vue"}
+                ]
+            }
+        },
+
+        methods: {
+            dealMyDate(v) {
+                let len = this.result.length;
+                let res = "";
+                for (let i = 0; i < len; i++) {
+
+                    if (this.result[i].date == v) {
+                        res = this.result[i].content;
+                        return '✔️'
+                    }
+                }
+                return res
             }
         }
-    }
+    });
+
+    var data4CalVue = {
+        uri: 'login',
+        result: [
+            {"date":"2020-12-01","content":"放假"},
+            {"date":"2020-12-02","content":"去交电费"},
+            {"date":"2020-11-03","content":"去学习vue"}
+        ],
+        user: {username: '', password: '', role: 0}
+    };
+    new Vue({
+        el: '#app',
+        data: data4CalVue,
+        methods: {
+
+
+            dealMyDate: function (v) {
+                let len = this.result.length;
+                let res = "";
+                for (let i = 0; i < len; i++) {
+                    console.log("result:");
+                    console.log(this.result[i].date);
+                    console.log("vvvvvvv");
+                    console.log(v)
+                    if (this.result[i].date == v) {
+                        res = this.result[i].content;
+                        return '✔️'
+                    }
+                }
+                return res
+            }
+
+        }
+    })
+
 </script>
-<style>
-    .calendar-day{
-        text-align: center;
-        color: #202535;
-        line-height: 30px;
-        font-size: 12px;
-    }
-    .is-selected{
-        color: #F8A535;
-        font-size: 10px;
-        margin-top: 5px;
-    }
-    #calendar .el-button-group>.el-button:not(:first-child):not(:last-child):after{
-        content: '当月';
-    }
-</style>
-</body>
+</html>
