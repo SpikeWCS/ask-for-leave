@@ -10,12 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2885b6e2-28f6-4750-848e-825f9466ae42" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../front-end/html/test2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../front-end/icon/qingjia.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/employeePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/employeePage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/askforleave/WEB-INF/html/employeePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/askforleave/WEB-INF/html/employeePage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/html/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/html/test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-end/html/test2.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/html/test2.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />

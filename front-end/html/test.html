@@ -112,6 +112,22 @@
     .jiaQiJinDuDiv {
         height: 150px;
     }
+    .text {
+        font-size: 14px;
+    }
+
+    .item {
+        margin-bottom: 18px;
+    }
+
+    .clearfix:before,
+    .clearfix:after {
+        display: table;
+        content: "";
+    }
+    .clearfix:after {
+        clear: both
+    }
 
 </style>
 <body>
@@ -147,36 +163,41 @@
                             @select="handleLeftMenuSelect">
                         <el-menu-item index="1">
                             <i class="el-icon-s-home"></i>
-                            <span slot="title">首页</span>
+                            <span @>首页</span>
                         </el-menu-item>
                         <el-menu-item index="2">
                             <i class="el-icon-menu"></i>
-                            <span slot="title">归档</span>
+                            <el-dropdown>
+                                <span class="el-dropdown-link">
+                                    请假
+                                </span>
+                                <el-dropdown-menu slot="dropdown">
+                                    <el-dropdown-item icon="el-icon-circle-plus" >因公</el-dropdown-item>
+                                    <el-dropdown-item icon="el-icon-circle-plus-outline" >因私</el-dropdown-item>
+                                </el-dropdown-menu>
+                            </el-dropdown>
                         </el-menu-item>
                         <el-menu-item index="3" >
                             <i class="el-icon-document"></i>
-                            <span slot="title">分类</span>
+                            <span slot="title">假期</span>
                         </el-menu-item>
                         <el-menu-item index="4">
                             <i class="el-icon-price-tag"></i>
-                            <span slot="title">标签</span>
+                            <span slot="title">流程</span>
                         </el-menu-item>
                         <el-menu-item index="5">
                             <i class="el-icon-coordinate"></i>
                             <span slot="title">项目</span>
                         </el-menu-item>
-                        <el-menu-item index="6">
-                            <i class="el-icon-s-custom"></i>
-                            <span slot="title">关于</span>
-                        </el-menu-item>
+
                     </el-menu> <!-- 分类标签 -->
                 </el-col>
 
             </el-row>
         </el-aside>
         <el-container>
-            <el-main>
-                <main-page></main-page>
+            <el-main style="min-height: 90vh;">
+                <component :is="nowName"></component>
             </el-main>
             <el-footer>Footer</el-footer>
         </el-container>
@@ -188,6 +209,55 @@
 
 <script>
 
+    Vue.component('yingong-page', {
+        template: "<div style=\"width: 550px;\">\n" +
+            "                    <el-card class=\"box-card\" >\n" +
+            "                        <div slot=\"header\" class=\"clearfix\">\n" +
+            "                            <span style=\"font-size: 30px; text-align: left\">因公请假</span>\n" +
+            "                        </div>\n" +
+            "                        <el-form ref=\"form\" :model=\"form\" label-width=\"80px\">\n" +
+            "                            <el-form-item label=\"请假类型\">\n" +
+            "                                <el-input v-model=\"form.name\"></el-input>\n" +
+            "                            </el-form-item>\n" +
+            "\n" +
+            "                            <el-form-item label=\"请假时间\">\n" +
+            "                                <el-col :span=\"11\">\n" +
+            "                                    <el-date-picker type=\"date\" placeholder=\"选择日期\" v-model=\"form.date1\" style=\"width: 100%;\"></el-date-picker>\n" +
+            "                                </el-col>\n" +
+            "                                <el-col class=\"line\" :span=\"2\">-</el-col>\n" +
+            "                                <el-col :span=\"11\">\n" +
+            "                                    <el-date-picker type=\"date\" placeholder=\"选择日期\" v-model=\"form.date2\" style=\"width: 100%;\"></el-date-picker>\n" +
+            "                                </el-col>\n" +
+            "                            </el-form-item>\n" +
+            "\n" +
+            "                            <el-form-item label=\"活动形式\">\n" +
+            "                                <el-input type=\"textarea\" v-model=\"form.desc\" ></el-input>\n" +
+            "                            </el-form-item>\n" +
+            "                            <el-form-item >\n" +
+            "                                <el-button type=\"primary\" @click=\"onSubmit\">立即创建</el-button>\n" +
+            "                                <el-button>取消</el-button>\n" +
+            "                            </el-form-item>\n" +
+            "                        </el-form>\n" +
+            "                    </el-card>\n" +
+            "\n" +
+            "                </div>"
+        ,
+        data: function () {
+            return {
+
+                form: {
+                    name: '',
+                    region: '',
+                    date1: '',
+                    date2: '',
+                    delivery: false,
+                    type: [],
+                    resource: '',
+                    desc: ''
+                }
+            }
+        },
+    });
     Vue.component('main-page', {
         template: '<div>\n' +
             '                    <el-row>\n' +
@@ -257,7 +327,17 @@
                     {"date":"2020-12-01","content":"放假"},
                     {"date":"2020-12-02","content":"去交电费"},
                     {"date":"2020-11-03","content":"去学习vue"}
-                ]
+                ],
+                form: {
+                    name: '',
+                    region: '',
+                    date1: '',
+                    date2: '',
+                    delivery: false,
+                    type: [],
+                    resource: '',
+                    desc: ''
+                }
             }
         },
 
@@ -284,7 +364,21 @@
             {"date":"2020-12-02","content":"去交电费"},
             {"date":"2020-11-03","content":"去学习vue"}
         ],
-        user: {username: '', password: '', role: 0}
+        user: {username: '', password: '', role: 0},
+        mainNames: [
+            "main-page", "yingong-page"
+        ],
+        nowName: "main-page",
+        form: {
+            name: '',
+            region: '',
+            date1: '',
+            date2: '',
+            delivery: false,
+            type: [],
+            resource: '',
+            desc: ''
+        }
     };
     new Vue({
         el: '#app',
@@ -306,6 +400,20 @@
                     }
                 }
                 return res
+            },
+
+            handleLeftMenuSelect: function (index) {
+
+                console.log(index)
+                if(index == 1) {
+                    this.nowName = this.mainNames[0];
+
+                }else if(index == 2) {
+                    this.nowName = this.mainNames[1];
+                }else {
+                    this.nowName = this.mainNames[1];
+                }
+                console.log(this.nowName)
             }
 
         }
