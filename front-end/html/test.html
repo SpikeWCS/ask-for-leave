@@ -129,6 +129,7 @@
         clear: both
     }
 
+
 </style>
 <body>
 <div id="app">
@@ -167,13 +168,13 @@
                         </el-menu-item>
                         <el-menu-item index="2">
                             <i class="el-icon-menu"></i>
-                            <el-dropdown>
+                            <el-dropdown @command="handleCommand">
                                 <span class="el-dropdown-link">
                                     请假
                                 </span>
                                 <el-dropdown-menu slot="dropdown">
-                                    <el-dropdown-item icon="el-icon-circle-plus" >因公</el-dropdown-item>
-                                    <el-dropdown-item icon="el-icon-circle-plus-outline" >因私</el-dropdown-item>
+                                    <el-dropdown-item icon="el-icon-circle-plus"  command="a">因公</el-dropdown-item>
+                                    <el-dropdown-item icon="el-icon-circle-plus-outline" command="b">因私</el-dropdown-item>
                                 </el-dropdown-menu>
                             </el-dropdown>
                         </el-menu-item>
@@ -198,6 +199,7 @@
         <el-container>
             <el-main style="min-height: 90vh;">
                 <component :is="nowName"></component>
+
             </el-main>
             <el-footer>Footer</el-footer>
         </el-container>
@@ -209,6 +211,65 @@
 
 <script>
 
+    Vue.component('yinsi-page', {
+        template: "<div style=\"width: 550px\">\n" +
+            "                    <el-card class=\"box-card\">\n" +
+            "                        <div slot=\"header\" class=\"clearfix\">\n" +
+            "                            <span style=\"font-size: 30px; text-align: left\">因私请假</span>\n" +
+            "                        </div>\n" +
+            "                        <el-form ref=\"form\" :model=\"form\" label-width=\"80px\">\n" +
+            "                            <el-form-item label=\"请假原因\">\n" +
+            "                                <el-input v-model=\"form.name\"></el-input>\n" +
+            "                            </el-form-item>\n" +
+            "                            <el-form-item label=\"请假类型\" style=\"text-align: left\">\n" +
+            "                                <el-select v-model=\"form.region\" placeholder=\"请选择请假类型\">\n" +
+            "                                    <el-option label=\"年假\" value=\"nianjia\"></el-option>\n" +
+            "                                    <el-option label=\"病假\" value=\"bingjia\"></el-option>\n" +
+            "                                    <el-option label=\"婚假\" value=\"hunjia\"></el-option>\n" +
+            "                                    <el-option label=\"产检假\" value=\"chanjianjia\"></el-option>\n" +
+            "                                    <el-option label=\"产假\" value=\"chanjia\"></el-option>\n" +
+            "                                    <el-option label=\"哺乳假\" value=\"burujia\"></el-option>\n" +
+            "                                    <el-option label=\"陪产假\" value=\"peichanjia\"></el-option>\n" +
+            "                                    <el-option label=\"事假\" value=\"shijia\"></el-option>\n" +
+            "                                </el-select>\n" +
+            "                            </el-form-item>\n" +
+            "                            <el-form-item label=\"请假时间\">\n" +
+            "                                <el-col :span=\"11\">\n" +
+            "                                    <el-date-picker type=\"date\" placeholder=\"选择日期\" v-model=\"form.date1\" style=\"width: 100%;\"></el-date-picker>\n" +
+            "                                </el-col>\n" +
+            "                                <el-col class=\"line\" :span=\"2\">-</el-col>\n" +
+            "                                <el-col :span=\"11\">\n" +
+            "                                    <el-date-picker type=\"date\" placeholder=\"选择日期\" v-model=\"form.date2\" style=\"width: 100%;\"></el-date-picker>\n" +
+            "                                </el-col>\n" +
+            "                            </el-form-item>\n" +
+            "\n" +
+            "\n" +
+            "                            <el-form-item label=\"具体原因\">\n" +
+            "                                <el-input type=\"textarea\" v-model=\"form.desc\"></el-input>\n" +
+            "                            </el-form-item>\n" +
+            "                            <el-form-item label-width=\"auto\">\n" +
+            "                                <el-button type=\"primary\" @click=\"onSubmit\">立即创建</el-button>\n" +
+            "                            </el-form-item>\n" +
+            "                        </el-form>\n" +
+            "                    </el-card>\n" +
+            "                </div>"
+        ,
+        data: function () {
+            return {
+
+                form: {
+                    name: '',
+                    region: '',
+                    date1: '',
+                    date2: '',
+                    delivery: false,
+                    type: [],
+                    resource: '',
+                    desc: ''
+                }
+            }
+        },
+    });
     Vue.component('yingong-page', {
         template: "<div style=\"width: 550px;\">\n" +
             "                    <el-card class=\"box-card\" >\n" +
@@ -230,12 +291,12 @@
             "                                </el-col>\n" +
             "                            </el-form-item>\n" +
             "\n" +
-            "                            <el-form-item label=\"活动形式\">\n" +
+            "                            <el-form-item label=\"具体理由\">\n" +
             "                                <el-input type=\"textarea\" v-model=\"form.desc\" ></el-input>\n" +
             "                            </el-form-item>\n" +
-            "                            <el-form-item >\n" +
-            "                                <el-button type=\"primary\" @click=\"onSubmit\">立即创建</el-button>\n" +
-            "                                <el-button>取消</el-button>\n" +
+            "                            <el-form-item label-width='auto'>\n" +
+            "                                <el-button type=\"primary\" @click=\"onSubmit\">提交</el-button>\n" +
+
             "                            </el-form-item>\n" +
             "                        </el-form>\n" +
             "                    </el-card>\n" +
@@ -366,7 +427,7 @@
         ],
         user: {username: '', password: '', role: 0},
         mainNames: [
-            "main-page", "yingong-page"
+            "main-page", "yingong-page", "yinsi-page"
         ],
         nowName: "main-page",
         form: {
@@ -410,10 +471,23 @@
 
                 }else if(index == 2) {
                     this.nowName = this.mainNames[1];
-                }else {
+
+                }else if(index == 3) {
+                    this.nowName = this.mainNames[2];
+                } else {
                     this.nowName = this.mainNames[1];
                 }
                 console.log(this.nowName)
+            },
+
+            // 处理 请假栏 - 因公 因私 的点击事件
+            handleCommand: function (command) {
+                if(command == "a") {
+                    this.nowName = this.mainNames[1];
+                }else if(command == "b"){
+                    this.nowName = this.mainNames[2];
+                }
+                return
             }
 
         }

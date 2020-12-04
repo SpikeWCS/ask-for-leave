@@ -46,7 +46,9 @@
     a {
         text-decoration: none;
     }
-
+    .bg-purple {
+        background: #d3dce6;
+    }
     .grid-content {
         border-radius: 4px;
         min-height: 36px;
@@ -126,6 +128,8 @@
     .clearfix:after {
         clear: both
     }
+
+
 </style>
 <body>
 <div id="app">
@@ -160,17 +164,17 @@
                             @select="handleLeftMenuSelect">
                         <el-menu-item index="1">
                             <i class="el-icon-s-home"></i>
-                            <span >首页</span>
+                            <span @>首页</span>
                         </el-menu-item>
                         <el-menu-item index="2">
                             <i class="el-icon-menu"></i>
-                            <el-dropdown>
+                            <el-dropdown @command="handleCommand">
                                 <span class="el-dropdown-link">
                                     请假
                                 </span>
                                 <el-dropdown-menu slot="dropdown">
-                                    <el-dropdown-item icon="el-icon-circle-plus">因公</el-dropdown-item>
-                                    <el-dropdown-item icon="el-icon-circle-plus-outline">因私</el-dropdown-item>
+                                    <el-dropdown-item icon="el-icon-circle-plus"  command="a">因公</el-dropdown-item>
+                                    <el-dropdown-item icon="el-icon-circle-plus-outline" command="b">因私</el-dropdown-item>
                                 </el-dropdown-menu>
                             </el-dropdown>
                         </el-menu-item>
@@ -194,37 +198,7 @@
         </el-aside>
         <el-container>
             <el-main style="min-height: 90vh;">
-                <div style="width: 550px;">
-                    <el-card class="box-card" >
-                        <div slot="header" class="clearfix">
-                            <span style="font-size: 30px; text-align: left">因公请假</span>
-                        </div>
-                        <el-form ref="form" :model="form" label-width="80px">
-                            <el-form-item label="请假类型">
-                                <el-input v-model="form.name"></el-input>
-                            </el-form-item>
 
-                            <el-form-item label="请假时间">
-                                <el-col :span="11">
-                                    <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
-                                </el-col>
-                                <el-col class="line" :span="2">-</el-col>
-                                <el-col :span="11">
-                                    <el-date-picker type="date" placeholder="选择日期" v-model="form.date2" style="width: 100%;"></el-date-picker>
-                                </el-col>
-                            </el-form-item>
-
-                            <el-form-item label="活动形式">
-                                <el-input type="textarea" v-model="form.desc" ></el-input>
-                            </el-form-item>
-                            <el-form-item >
-                                <el-button type="primary" @click="onSubmit">立即创建</el-button>
-                                <el-button>取消</el-button>
-                            </el-form-item>
-                        </el-form>
-                    </el-card>
-
-                </div>
             </el-main>
             <el-footer>Footer</el-footer>
         </el-container>
@@ -236,6 +210,153 @@
 
 <script>
 
+    Vue.component('yingong-page', {
+        template: "<div style=\"width: 550px;\">\n" +
+            "                    <el-card class=\"box-card\" >\n" +
+            "                        <div slot=\"header\" class=\"clearfix\">\n" +
+            "                            <span style=\"font-size: 30px; text-align: left\">因公请假</span>\n" +
+            "                        </div>\n" +
+            "                        <el-form ref=\"form\" :model=\"form\" label-width=\"80px\">\n" +
+            "                            <el-form-item label=\"请假类型\">\n" +
+            "                                <el-input v-model=\"form.name\"></el-input>\n" +
+            "                            </el-form-item>\n" +
+            "\n" +
+            "                            <el-form-item label=\"请假时间\">\n" +
+            "                                <el-col :span=\"11\">\n" +
+            "                                    <el-date-picker type=\"date\" placeholder=\"选择日期\" v-model=\"form.date1\" style=\"width: 100%;\"></el-date-picker>\n" +
+            "                                </el-col>\n" +
+            "                                <el-col class=\"line\" :span=\"2\">-</el-col>\n" +
+            "                                <el-col :span=\"11\">\n" +
+            "                                    <el-date-picker type=\"date\" placeholder=\"选择日期\" v-model=\"form.date2\" style=\"width: 100%;\"></el-date-picker>\n" +
+            "                                </el-col>\n" +
+            "                            </el-form-item>\n" +
+            "\n" +
+            "                            <el-form-item label=\"具体理由\">\n" +
+            "                                <el-input type=\"textarea\" v-model=\"form.desc\" ></el-input>\n" +
+            "                            </el-form-item>\n" +
+            "                            <el-form-item label-width='auto'>\n" +
+            "                                <el-button type=\"primary\" @click=\"onSubmit\">提交</el-button>\n" +
+
+            "                            </el-form-item>\n" +
+            "                        </el-form>\n" +
+            "                    </el-card>\n" +
+            "\n" +
+            "                </div>"
+        ,
+        data: function () {
+            return {
+
+                form: {
+                    name: '',
+                    region: '',
+                    date1: '',
+                    date2: '',
+                    delivery: false,
+                    type: [],
+                    resource: '',
+                    desc: ''
+                }
+            }
+        },
+    });
+    Vue.component('main-page', {
+        template: '<div>\n' +
+            '                    <el-row>\n' +
+            '                        <el-col :span="9">\n' +
+            '\n' +
+            '                            <el-row>\n' +
+            '                                <el-col :span="24">\n' +
+            '                                    <el-card class="box-card">\n' +
+            '                                        <div class="daysDiv" font-family="PingFang SC">\n' +
+            '                                            您已连续签到\n' +
+            '                                        </div>\n' +
+            '                                        <el-divider><i class="el-icon-mobile-phone" style="color: #005cbf"></i></el-divider>\n' +
+            '                                        <div class="daysNumDiv">\n' +
+            '                                            9 days\n' +
+            '                                        </div>\n' +
+            '                                    </el-card>\n' +
+            '                                </el-col>\n' +
+            '                            </el-row>\n' +
+            '\n' +
+            '                            <el-row type="flex">\n' +
+            '                                <el-col :span="24">\n' +
+            '                                    <el-card class="box-card" >\n' +
+            '                                        <div style="text-align: left">\n' +
+            '                                            <el-progress :text-inside="true" :stroke-width="26" :percentage="70" style="margin-bottom: 10px"></el-progress>\n' +
+            '                                            <el-progress :text-inside="true" :stroke-width="24" :percentage="100" status="success" style="margin-bottom: 10px"></el-progress>\n' +
+            '                                            <el-progress :text-inside="true" :stroke-width="22" :percentage="80" status="warning" style="margin-bottom: 10px"></el-progress>\n' +
+            '                                            <el-progress :text-inside="true" :stroke-width="20" :percentage="50" status="exception"></el-progress>\n' +
+            '                                        </div>\n' +
+            '\n' +
+            '                                    </el-card>\n' +
+            '                                </el-col>\n' +
+            '                            </el-row>\n' +
+            '\n' +
+            '                            <el-row >\n' +
+            '                                <el-col :span="24">\n' +
+            '                                    <el-card class="box-card">\n' +
+            '                                        <div v-for="o in 4" :key="o" class="text item">\n' +
+            '                                            {{\'列表内容 \' + o }}\n' +
+            '                                        </div>\n' +
+            '                                    </el-card>\n' +
+            '                                </el-col>\n' +
+            '                            </el-row>\n' +
+            '\n' +
+            '\n' +
+            '                        </el-col>\n' +
+            '                        <el-col :span="15">\n' +
+            '                            <el-card class="calCard">\n' +
+            '                                <div class="calendarDiv">\n' +
+            '                                    <el-calendar>\n' +
+            '                                        <template slot="dateCell"  slot-scope="{date, data}">\n' +
+            '                                            <p>\n' +
+            '                                                {{ data.day.split(\'-\').slice(1).join(\'-\') }} <br/> {{dealMyDate(data.day) }}' +
+            '                                            </p>\n' +
+            '                                        </template>\n' +
+            '                                    </el-calendar>\n' +
+            '                                </div>\n' +
+            '\n' +
+            '                            </el-card>\n' +
+            '\n' +
+            '                        </el-col>\n' +
+            '                    </el-row>\n' +
+            '                </div>'
+        ,
+        data: function () {
+            return {
+                result: [
+                    {"date":"2020-12-01","content":"放假"},
+                    {"date":"2020-12-02","content":"去交电费"},
+                    {"date":"2020-11-03","content":"去学习vue"}
+                ],
+                form: {
+                    name: '',
+                    region: '',
+                    date1: '',
+                    date2: '',
+                    delivery: false,
+                    type: [],
+                    resource: '',
+                    desc: ''
+                }
+            }
+        },
+
+        methods: {
+            dealMyDate(v) {
+                let len = this.result.length;
+                let res = "";
+                for (let i = 0; i < len; i++) {
+
+                    if (this.result[i].date == v) {
+                        res = this.result[i].content;
+                        return '✔️'
+                    }
+                }
+                return res
+            }
+        }
+    });
 
     var data4CalVue = {
         uri: 'login',
@@ -245,6 +366,10 @@
             {"date":"2020-11-03","content":"去学习vue"}
         ],
         user: {username: '', password: '', role: 0},
+        mainNames: [
+            "main-page", "yingong-page"
+        ],
+        nowName: "main-page",
         form: {
             name: '',
             region: '',
@@ -278,8 +403,28 @@
                 return res
             },
 
-            onSubmit: function () {
-                console.log('submit!');
+            handleLeftMenuSelect: function (index) {
+
+                console.log(index)
+                if(index == 1) {
+                    this.nowName = this.mainNames[0];
+
+                }else if(index == 2) {
+                    this.nowName = this.mainNames[1];
+                }else {
+                    this.nowName = this.mainNames[1];
+                }
+                console.log(this.nowName)
+            },
+
+            // 处理 请假栏 - 因公 因私 的点击事件
+            handleCommand: function (command) {
+                if(command == "a") {
+                    this.nowName = this.mainNames[1];
+                }else {
+                    this.nowName = this.mainNames[0];
+                }
+
             }
 
         }
