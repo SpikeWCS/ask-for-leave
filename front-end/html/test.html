@@ -211,6 +211,62 @@
 
 <script>
 
+
+    Vue.component('jiaqi-page', {
+        template: "<div>\n" +
+            "                    <el-card class=\"box-card\">\n" +
+            "                        <template>\n" +
+            "                            <el-table\n" +
+            "                                    :data=\"jiaQiDate\"\n" +
+            "                                    stripe\n" +
+            "                                    style=\"width: 100%\">\n" +
+            "                                <el-table-column\n" +
+            "                                        prop=\"type\"\n" +
+            "                                        label=\"假期类型\"\n" +
+            "                                        width=\"180\">\n" +
+            "                                </el-table-column>\n" +
+            "                                <el-table-column\n" +
+            "                                        prop=\"days\"\n" +
+            "                                        label=\"剩余假期\"\n" +
+            "                                        width=\"180\">\n" +
+            "                                </el-table-column>\n" +
+            "\n" +
+            "                            </el-table>\n" +
+            "                        </template>\n" +
+            "                    </el-card>\n" +
+            "                </div>"
+        ,
+        data: function () {
+            return {
+                jiaQiDate: [{
+                    type: '年假',
+                    days: '10天',
+                }, {
+                    type: '病假',
+                    days: '10天',
+                },{
+                    type: '婚假',
+                    days: '10天',
+                },{
+                    type: '产检假',
+                    days: '10天',
+                },{
+                    type: '产假',
+                    days: '10天',
+                },{
+                    type: '哺乳假',
+                    days: '10天',
+                },{
+                    type: '陪产假',
+                    days: '10天',
+                },{
+                    type: '事假',
+                    days: '10天',
+                }]
+
+            }
+        }
+    });
     Vue.component('yinsi-page', {
         template: "<div style=\"width: 550px\">\n" +
             "                    <el-card class=\"box-card\">\n" +
@@ -354,9 +410,18 @@
             '\n' +
             '                            <el-row >\n' +
             '                                <el-col :span="24">\n' +
-            '                                    <el-card class="box-card">\n' +
-            '                                        <div v-for="o in 4" :key="o" class="text item">\n' +
-            '                                            {{\'列表内容 \' + o }}\n' +
+            '                                    <el-card class="box-card" >\n' +
+            '                                        <div class="daysDiv" font-family="PingFang SC">\n' +
+            '                                            请查看您的请假流程\n' +
+            '                                        </div>\n' +
+            '                                        <el-divider><p style="color: #005cbf">病假</p></el-divider>\n' +
+            '                                        <div style=" margin-top: 20px; margin-left: 40px; text-align: left">\n' +
+            '                                           <el-steps :space="200" :active="1"  finish-status="success">\n' +
+            '                                               <el-step title="已完成"></el-step> \n' +
+            '                                               <el-step title="进行中"></el-step> \n' +
+            '                                               <el-step title="步骤 3"></el-step> \n' +
+            '                                               <el-step title="步骤 3"></el-step> \n' +
+            '                                           </el-steps> \n' +
             '                                        </div>\n' +
             '                                    </el-card>\n' +
             '                                </el-col>\n' +
@@ -427,7 +492,7 @@
         ],
         user: {username: '', password: '', role: 0},
         mainNames: [
-            "main-page", "yingong-page", "yinsi-page"
+            "main-page", "yingong-page", "yinsi-page", "jiaqi-page"
         ],
         nowName: "main-page",
         form: {
@@ -473,7 +538,7 @@
                     this.nowName = this.mainNames[1];
 
                 }else if(index == 3) {
-                    this.nowName = this.mainNames[2];
+                    this.nowName = this.mainNames[3];
                 } else {
                     this.nowName = this.mainNames[1];
                 }
