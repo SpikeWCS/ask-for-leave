@@ -10,7 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2885b6e2-28f6-4750-848e-825f9466ae42" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../front-end/html/test2.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front-end/html/test2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/employeePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/employeePage.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -87,8 +87,29 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/html/employeePage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="2" column="6" lean-forward="true" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+            <state relative-caret-position="11569">
+              <caret line="562" selection-start-line="562" selection-end-line="562" />
+              <folding>
+                <element signature="n#el-row#0;n#el-aside#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#style#0;n#el-main#0;n#el-container#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-table#0;n#template#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-form-item#1;n#el-form#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-date-picker#0;n#el-col#0;n#el-form-item#2;n#el-form#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-date-picker#0;n#el-col#2;n#el-form-item#2;n#el-form#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-date-picker#0;n#el-col#0;n#el-form-item#1;n#el-form#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-date-picker#0;n#el-col#2;n#el-form-item#1;n#el-form#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#el-divider#0;n#el-card#0;n#el-col#0;n#el-row#0;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#el-card#0;n#el-col#0;n#el-row#1;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-progress#0;n#div#0;n#el-card#0;n#el-col#0;n#el-row#1;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-progress#1;n#div#0;n#el-card#0;n#el-col#0;n#el-row#1;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-progress#2;n#div#0;n#el-card#0;n#el-col#0;n#el-row#1;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#el-divider#0;n#el-card#0;n#el-col#0;n#el-row#2;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#el-card#0;n#el-col#0;n#el-row#2;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -659,7 +680,7 @@
       <workItem from="1606368217404" duration="1903000" />
       <workItem from="1606546551160" duration="8847000" />
       <workItem from="1606560782851" duration="22531000" />
-      <workItem from="1606890198623" duration="2128000" />
+      <workItem from="1606890198623" duration="2569000" />
     </task>
     <servers />
   </component>
@@ -672,13 +693,12 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47273000" />
+    <option name="totallyTimeSpent" value="47714000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23104435" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23104435" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -688,7 +708,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.14578313" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.6662651" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -914,8 +934,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/html/employeePage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="6" lean-forward="true" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+        <state relative-caret-position="11569">
+          <caret line="562" selection-start-line="562" selection-end-line="562" />
+          <folding>
+            <element signature="n#el-row#0;n#el-aside#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#el-main#0;n#el-container#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-table#0;n#template#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-form-item#1;n#el-form#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-date-picker#0;n#el-col#0;n#el-form-item#2;n#el-form#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-date-picker#0;n#el-col#2;n#el-form-item#2;n#el-form#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-date-picker#0;n#el-col#0;n#el-form-item#1;n#el-form#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-date-picker#0;n#el-col#2;n#el-form-item#1;n#el-form#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#el-divider#0;n#el-card#0;n#el-col#0;n#el-row#0;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#el-card#0;n#el-col#0;n#el-row#1;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-progress#0;n#div#0;n#el-card#0;n#el-col#0;n#el-row#1;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-progress#1;n#div#0;n#el-card#0;n#el-col#0;n#el-row#1;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-progress#2;n#div#0;n#el-card#0;n#el-col#0;n#el-row#1;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#el-divider#0;n#el-card#0;n#el-col#0;n#el-row#2;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#el-card#0;n#el-col#0;n#el-row#2;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
