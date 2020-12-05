@@ -46,6 +46,7 @@ public class UserController {
     @PostMapping("login")
     @ResponseBody
     public Object login(@RequestBody User userParam, HttpSession session) {
+        System.out.println("testttttttt 王春杉阿斯达" );
         String username =  userParam.getUsername();
         username = HtmlUtils.htmlEscape(username);
         User user = userService.getByUsernameAndPassword(username, userParam.getPassword());
