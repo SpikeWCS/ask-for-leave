@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-cn">
+
 <head>
     <meta charset="UTF-8">
+    <title>AskForLeave page</title>
+
     <!-- import CSS -->
     <link rel="stylesheet" href="https://unpkg.com/element-ui@2.14.1/lib/theme-chalk/index.css">
-    <script src="../js/jquery-3.5.1/jquery-3.5.1.min.js"></script>
-    <script src="../js/vue-2.6.12/vue.min.js"></script>
+
 
     <!-- import Vue before Element -->
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <!-- import JavaScript -->
     <script src="https://unpkg.com/element-ui@2.14.1/lib/index.js"></script>
-
+    <script src="/static/js/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+    <script src="/static/js/vue-2.6.12/vue.min.js"></script>
 </head>
 <style>
     .el-row {
@@ -509,24 +512,19 @@
     new Vue({
         el: '#app',
         data: data4CalVue,
+        mounted: function() {
+            this.user = sessionStorage.getItem("user");
+            console.log(sessionStorage.getItem("user"));
+            console.log("aaaaaaaaaaaaaaaa");
+            console.log(JSON.parse(sessionStorage.getItem("user")));
+        },
         methods: {
 
-
-            dealMyDate: function (v) {
-                let len = this.result.length;
-                let res = "";
-                for (let i = 0; i < len; i++) {
-                    console.log("result:");
-                    console.log(this.result[i].date);
-                    console.log("vvvvvvv");
-                    console.log(v)
-                    if (this.result[i].date == v) {
-                        res = this.result[i].content;
-                        return '✔️'
-                    }
-                }
-                return res
+            created() {
+                this.user = sessionStorage.getItem("user");
+                console.log(sessionStorage.getItem("user"));
             },
+
 
             handleLeftMenuSelect: function (index) {
 

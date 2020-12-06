@@ -18,35 +18,9 @@ public class UserController {
     UserService userService;
 
 
-//    @PostMapping("login")
-//    @ResponseBody
-//    public Object login(@RequestParam("username") String username, @RequestParam("password") String password,
-//                        @RequestParam("role") int loginRole) {
-//
-//        User user = userService.getByUsernameAndPassword(username, password);
-//        if(null == user) {
-//
-//            String message = "password is wrong!!!";
-//            return Result.fail(message);
-//
-//        }else {
-//
-//            // 如果用户登录的非普通员工账号, 需要符合身份才行
-//            if( (loginRole != 0 && loginRole == user.getRole()) || loginRole == 0 ) {
-//                Result result = Result.success();
-//                result.setData(user);
-//                return result;
-//            } else {
-//                String message = "your role is wrong!!!";
-//                return Result.fail(message);
-//            }
-//        }
-//    }
-
     @PostMapping("login")
     @ResponseBody
     public Object login(@RequestBody User userParam, HttpSession session) {
-        System.out.println("testttttttt 王春杉阿斯达" );
         String username =  userParam.getUsername();
         username = HtmlUtils.htmlEscape(username);
         User user = userService.getByUsernameAndPassword(username, userParam.getPassword());
@@ -69,6 +43,15 @@ public class UserController {
             }
         }
     }
+
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    @ResponseBody
+    public User getLoginedUser(HttpSession session) {
+        User user = (User)session.getAttribute("user");
+        System.out.println(user + "----++++++++++++");
+        return user;
+    }
+
 
 
     @RequestMapping("listUser")
