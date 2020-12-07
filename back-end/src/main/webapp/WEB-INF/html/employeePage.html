@@ -13,8 +13,8 @@
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <!-- import JavaScript -->
     <script src="https://unpkg.com/element-ui@2.14.1/lib/index.js"></script>
-    <script src="/static/js/jquery-3.5.1/jquery-3.5.1.min.js"></script>
-    <script src="/static/js/vue-2.6.12/vue.min.js"></script>
+    <script src="https://how2j.cn/study/jquery.min.js"></script>
+    <script src="https://how2j.cn/study/axios.min.js"></script>
 </head>
 <style>
     .el-row {
@@ -143,13 +143,13 @@
                 <el-col :span="24">
                     <div class="headImage">
                         <div class="block">
-                            <el-avatar :size="50" :src="circleUrl" @error="headImageError">
+                            <el-avatar :size="50" :src="circleUrl">
                                 <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"/>
                             </el-avatar>
                         </div>
                     </div> <!-- 头像 -->
                     <div id="name">
-                        <p>王春杉</p>
+                        <p>{{user.name}}</p>
                     </div>
                     <div id="location" >
                         <i class="el-icon-location-outline"></i>
@@ -162,8 +162,6 @@
                     <el-menu
                             default-active="1"
                             class="leftMenu"
-                            @open="handleOpen"
-                            @close="handleClose"
                             @select="handleLeftMenuSelect">
                         <el-menu-item index="1">
                             <i class="el-icon-s-home"></i>
@@ -487,13 +485,14 @@
     });
 
     var data4CalVue = {
+        circleUrl: "https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png",
         uri: 'login',
         result: [
             {"date":"2020-12-01","content":"放假"},
             {"date":"2020-12-02","content":"去交电费"},
             {"date":"2020-11-03","content":"去学习vue"}
         ],
-        user: {username: '', password: '', role: 0},
+        user: {username: 'aaa', password: '', role: 0, name: ""},
         mainNames: [
             "main-page", "yingong-page", "yinsi-page", "jiaqi-page"
         ],
@@ -507,24 +506,16 @@
             type: [],
             resource: '',
             desc: ''
-        }
+        },
+        input: ""
     };
-    new Vue({
+    var vue = new Vue({
         el: '#app',
         data: data4CalVue,
         mounted: function() {
-            this.user = sessionStorage.getItem("user");
-            console.log(sessionStorage.getItem("user"));
-            console.log("aaaaaaaaaaaaaaaa");
-            console.log(JSON.parse(sessionStorage.getItem("user")));
+            this.getUserInfo();
         },
         methods: {
-
-            created() {
-                this.user = sessionStorage.getItem("user");
-                console.log(sessionStorage.getItem("user"));
-            },
-
 
             handleLeftMenuSelect: function (index) {
 
@@ -550,9 +541,16 @@
                 }else if(command == "b"){
                     this.nowName = this.mainNames[2];
                 }
-                return
-            }
+                return ;
+            },
 
+            getUserInfo: function () {
+                var url = "user";
+                axios.get(url).then(function (response) {
+                    vue.user = response.data;
+
+                })
+            }
         }
     })
 
