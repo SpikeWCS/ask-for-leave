@@ -15,9 +15,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<User> list() {
-        System.out.println("usermapper:" + userMapper);
         User user = userMapper.get(1);
-        System.out.println("user"+ user);
         return userMapper.list();
     }
 
