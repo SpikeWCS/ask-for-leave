@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <!-- import CSS -->
@@ -11,9 +11,9 @@
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <!-- import JavaScript -->
     <script src="https://unpkg.com/element-ui@2.14.1/lib/index.js"></script>
-    <script src="https://how2j.cn/study/jquery.min.js"></script>
-    <script src="https://how2j.cn/study/axios.min.js"></script>
+
 </head>
+
 
 <style>
     .el-row {
@@ -379,9 +379,6 @@
         },
     });
     Vue.component('main-page', {
-        created() {
-
-        },
         template: '<div>\n' +
             '                    <el-row>\n' +
             '                        <el-col :span="9">\n' +
@@ -394,7 +391,7 @@
             '                                        </div>\n' +
             '                                        <el-divider><i class="el-icon-mobile-phone" style="color: #005cbf"></i></el-divider>\n' +
             '                                        <div class="daysNumDiv">\n' +
-            '                                            {{lianXuDays}} days\n' +
+            '                                            9 days\n' +
             '                                        </div>\n' +
             '                                    </el-card>\n' +
             '                                </el-col>\n' +
@@ -440,8 +437,8 @@
             '                                <div class="calendarDiv">\n' +
             '                                    <el-calendar>\n' +
             '                                        <template slot="dateCell"  slot-scope="{date, data}">\n' +
-            '                                            <p @click="signin(data.day)" :class="data.isSelected ? \'is-selected\' : \'\'">\n' +
-            '                                                {{ data.day.split(\'-\').slice(1).join(\'-\') }}<br/> {{dealMyDate(data.day) }} {{ data.isSelected ? \'✔️\' : \'\'}}' +
+            '                                            <p>\n' +
+            '                                                {{ data.day.split(\'-\').slice(1).join(\'-\') }} <br/> {{dealMyDate(data.day) }}' +
             '                                            </p>\n' +
             '                                        </template>\n' +
             '                                    </el-calendar>\n' +
@@ -455,9 +452,10 @@
         ,
         data: function () {
             return {
-
                 result: [
-                    "2020-12-01","2020-12-02","2020-11-03","2020-12-03","2020-12-04","2020-12-05"
+                    {"date":"2020-12-01","content":"放假"},
+                    {"date":"2020-12-02","content":"去交电费"},
+                    {"date":"2020-11-03","content":"去学习vue"}
                 ],
                 form: {
                     name: '',
@@ -471,63 +469,20 @@
                 },
                 employee: {},
                 user: {id: 0, username: 'aaa', password: '', role: 0, name: ""},
-                lianXuDays: 0,
             }
         },
-        mounted(){
-            this.$nextTick(()=>{
-                var that=this;
-                let uid = 1;
-                let url = "/employee/"+uid;
-                $.ajax({
-                    type:"get",
-                    url: url,
-                    success:function(data){
-                        console.log("aaaaaaa");
-
-                        that.employee = data;
-                        var dates = that.employee.signInDates;
-                        that.result = dates.split(',');
-                        console.log(that.result);
-                        that.lianXuDays = that.getLianXuDays(that.result)
-                    }
-                })
-            })
+        created() {
+            console.log("create")
+            this.getInfo()
         },
         methods: {
-            formatDate(date) {
-                console.log(date);
-                date = new Date(Date.parse(date.replace(/-/g, "/"))); //转换成Data();
-                console.log(date);
-                var y = date.getFullYear();
-                console.log(y);
-                var m = date.getMonth() + 1;
-                m = m < 10 ? '0' + m : m;
-                var d = date.getDate();
-                d = d < 10 ? ('0' + d) : d;
-                return y + '-' + m + '-' + d;
-            },
-            signin(data) {
-                console.log(data + "被点击了")
-                var date = new Date();
-                var y = date.getFullYear();
-                var m = date.getMonth()+1;
-                var d = date.getDate();
-                var today = y+'-'+m+'-'+d;
-                today = this.formatDate(today);
-                console.log(this.employee.hiredate);
-                var hireday = this.employee.hiredate;
-                if( today == data && today != hireday) {
-                    console.log("签到成功!")
-                    this.lianXuDays = this.lianXuDays + 1
-                    this.employee.hiredate = today
-                }
-            },
             dealMyDate(v) {
                 let len = this.result.length;
                 let res = "";
                 for (let i = 0; i < len; i++) {
-                    if (this.result[i] == v) {
+                    console.log(Vue.employee);
+                    if (this.result[i].date == v) {
+                        res = this.result[i].content;
                         return '✔️'
                     }
                 }
@@ -539,9 +494,7 @@
                 axios.get(url).then(function (response) {
                     Vue.employee = response.data;
                     console.log(typeof(Vue.employee) );
-                    var dates = Vue.employee.signInDates;
-                    Vue.result = dates.split(',');
-                    console.log(Vue.result);
+                    console.log(Vue.employee.hiredate);
                 })
             },
             getUserInfo: function () {
@@ -550,40 +503,6 @@
                     Vue.user = response.data;
 
                 })
-            },
-            getLianXuDays: function (dates) {
-                var arr = dates;
-                var date = new Date();
-                var y = date.getFullYear();
-                var m = date.getMonth()+1;
-                var d = date.getDate();
-                var today = y+'-'+m+'-'+d;
-                console.log(today);
-                //转时间戳
-                function time(date){
-                    return new Date(date);
-                }
-                var num = 0;//声明计数变量;
-                var le = arr.length;//数组长度;
-                console.log(time(today)-time(arr[le-1]));
-                if(time(today)-time(arr[le-1])==57600000)
-                //日期时间戳相差一天则连续,此法虽笨,但实用;判断当前日期与最近一天
-                {
-                    num=1;//满足条件,连续2天;
-                    //然后对数组循环判断,满足则num++;否则中断循环;
-                    for(var i=le; i>0; i--){
-                        if(time(arr[i-1])-time(arr[i-2])==86400000){
-                            num++;
-                        }else{
-                            break;//如果只要找出所有连续的天数,不需要中断
-                        }
-
-                    }
-                    console.log(num);
-                }else{
-                    console.log('第一天');
-                }
-                return num;
             }
         }
     });
@@ -591,20 +510,33 @@
     var data4CalVue = {
         circleUrl: "https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png",
         uri: 'login',
-
+        result: [
+            {"date":"2020-12-01","content":"放假"},
+            {"date":"2020-12-02","content":"去交电费"},
+            {"date":"2020-11-03","content":"去学习vue"}
+        ],
         user: {id: 0, username: 'aaa', password: '', role: 0, name: ""},
         mainNames: [
             "main-page", "yingong-page", "yinsi-page", "jiaqi-page"
         ],
         nowName: "main-page",
-
+        form: {
+            name: '',
+            region: '',
+            date1: '',
+            date2: '',
+            delivery: false,
+            type: [],
+            resource: '',
+            desc: ''
+        },
         input: ""
     };
     var vue = new Vue({
         el: '#app',
         data: data4CalVue,
         mounted: function() {
-            this.getUserInfo();
+            // this.getUserInfo();
         },
         methods: {
 
@@ -639,11 +571,11 @@
                 var url = "user";
                 axios.get(url).then(function (response) {
                     vue.user = response.data;
-                    console.log(vue.user)
+
                 })
             }
         }
     })
 
 </script>
-</html></html>
+</html>
