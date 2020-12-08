@@ -17,6 +17,6 @@ public class TestController {
     @RequestMapping("/test")
     @ResponseBody
     public Employee test() {
-        return employeeService.get(1);
+        return employeeService.getByUid(1);
     }
 }

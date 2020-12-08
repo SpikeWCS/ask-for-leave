@@ -7,8 +7,7 @@ import java.util.List;
 public interface EmployeeService {
 
 
-    Employee get(int id);
-    List<String> getSignInDatesById(int id);
-    int getSignInDaysById(int id);  // 根据id获得连续签到时间
+    Employee getByUid(int uid);
+
 
 }

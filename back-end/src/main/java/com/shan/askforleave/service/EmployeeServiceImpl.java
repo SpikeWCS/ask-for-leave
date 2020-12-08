@@ -16,28 +16,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     EmployeeMapper employeeMapper;
 
     @Override
-    public Employee get(int id) {
-        Employee employee = employeeMapper.get(id);
+    public Employee getByUid(int uid) {
+        Employee employee = employeeMapper.getByUid(uid);
         System.out.println("get employee:" + employee);
-        return employeeMapper.get(id);
+        return employee;
     }
 
 
-    @Override
-    public List<String> getSignInDatesById(int id) {
-
-        Employee employee = employeeMapper.get(id);
-        String[] dates = employee.getSignInDates().split(",");
-        for(int i=0; i<dates.length; i++) {
-            System.out.println(dates[i]);
-        }
-
-        List<String> list = Arrays.asList(dates);
-        return list;
-    }
-
-    @Override
-    public int getSignInDaysById(int id) {
-        return 0;
-    }
 }

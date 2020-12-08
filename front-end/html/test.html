@@ -13,6 +13,8 @@
     <script src="https://unpkg.com/element-ui@2.14.1/lib/index.js"></script>
 
 </head>
+
+
 <style>
     .el-row {
     }
@@ -140,13 +142,13 @@
                 <el-col :span="24">
                     <div class="headImage">
                         <div class="block">
-                            <el-avatar :size="50" :src="circleUrl" @error="headImageError">
+                            <el-avatar :size="50" :src="circleUrl">
                                 <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"/>
                             </el-avatar>
                         </div>
                     </div> <!-- 头像 -->
                     <div id="name">
-                        <p>王春杉</p>
+                        <p>{{user.name}}</p>
                     </div>
                     <div id="location" >
                         <i class="el-icon-location-outline"></i>
@@ -159,8 +161,6 @@
                     <el-menu
                             default-active="1"
                             class="leftMenu"
-                            @open="handleOpen"
-                            @close="handleClose"
                             @select="handleLeftMenuSelect">
                         <el-menu-item index="1">
                             <i class="el-icon-s-home"></i>
@@ -265,6 +265,9 @@
                 }]
 
             }
+        },
+        methods: {
+
         }
     });
     Vue.component('yinsi-page', {
@@ -463,34 +466,56 @@
                     type: [],
                     resource: '',
                     desc: ''
-                }
+                },
+                employee: {},
+                user: {id: 0, username: 'aaa', password: '', role: 0, name: ""},
             }
         },
-
+        created() {
+            console.log("create")
+            this.getInfo()
+        },
         methods: {
             dealMyDate(v) {
                 let len = this.result.length;
                 let res = "";
                 for (let i = 0; i < len; i++) {
-
+                    console.log(Vue.employee);
                     if (this.result[i].date == v) {
                         res = this.result[i].content;
                         return '✔️'
                     }
                 }
                 return res
+            },
+            getInfo() {
+                let uid = 1;
+                let url = "/employee/"+uid;
+                axios.get(url).then(function (response) {
+                    Vue.employee = response.data;
+                    console.log(typeof(Vue.employee) );
+                    console.log(Vue.employee.hiredate);
+                })
+            },
+            getUserInfo: function () {
+                var url = "user";
+                axios.get(url).then(function (response) {
+                    Vue.user = response.data;
+
+                })
             }
         }
     });
 
     var data4CalVue = {
+        circleUrl: "https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png",
         uri: 'login',
         result: [
             {"date":"2020-12-01","content":"放假"},
             {"date":"2020-12-02","content":"去交电费"},
             {"date":"2020-11-03","content":"去学习vue"}
         ],
-        user: {username: '', password: '', role: 0},
+        user: {id: 0, username: 'aaa', password: '', role: 0, name: ""},
         mainNames: [
             "main-page", "yingong-page", "yinsi-page", "jiaqi-page"
         ],
@@ -504,29 +529,16 @@
             type: [],
             resource: '',
             desc: ''
-        }
+        },
+        input: ""
     };
-    new Vue({
+    var vue = new Vue({
         el: '#app',
         data: data4CalVue,
+        mounted: function() {
+            // this.getUserInfo();
+        },
         methods: {
-
-
-            dealMyDate: function (v) {
-                let len = this.result.length;
-                let res = "";
-                for (let i = 0; i < len; i++) {
-                    console.log("result:");
-                    console.log(this.result[i].date);
-                    console.log("vvvvvvv");
-                    console.log(v)
-                    if (this.result[i].date == v) {
-                        res = this.result[i].content;
-                        return '✔️'
-                    }
-                }
-                return res
-            },
 
             handleLeftMenuSelect: function (index) {
 
@@ -552,9 +564,16 @@
                 }else if(command == "b"){
                     this.nowName = this.mainNames[2];
                 }
-                return
-            }
+                return ;
+            },
 
+            getUserInfo: function () {
+                var url = "user";
+                axios.get(url).then(function (response) {
+                    vue.user = response.data;
+
+                })
+            }
         }
     })
 

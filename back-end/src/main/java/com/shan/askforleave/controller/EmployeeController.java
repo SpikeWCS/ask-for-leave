@@ -15,14 +15,14 @@ public class EmployeeController {
 
     /**
      * Restful 风格接口
-     * @param id
+     * @param uid
      * @return
      */
-    @RequestMapping(value = "/employee/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/employee/{uid}", method = RequestMethod.GET)
     @ResponseBody
-    public Employee getEmployeeById(@PathVariable("id") int id) {
-        System.out.println("id=====" + id);
-        Employee employee = employeeService.get(id);
+    public Employee getEmployeeByUid(@PathVariable("uid") int uid) {
+        System.out.println("id=====" + uid);
+        Employee employee = employeeService.getByUid(uid);
         return employee;
     }
 

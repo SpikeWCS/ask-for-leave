@@ -11,8 +11,10 @@
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <!-- import JavaScript -->
     <script src="https://unpkg.com/element-ui@2.14.1/lib/index.js"></script>
-
+    <script src="https://how2j.cn/study/jquery.min.js"></script>
+    <script src="https://how2j.cn/study/axios.min.js"></script>
 </head>
+
 <style>
     .el-row {
     }
@@ -140,13 +142,13 @@
                 <el-col :span="24">
                     <div class="headImage">
                         <div class="block">
-                            <el-avatar :size="50" :src="circleUrl" @error="headImageError">
+                            <el-avatar :size="50" :src="circleUrl">
                                 <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"/>
                             </el-avatar>
                         </div>
                     </div> <!-- 头像 -->
                     <div id="name">
-                        <p>王春杉</p>
+                        <p>{{user.name}}</p>
                     </div>
                     <div id="location" >
                         <i class="el-icon-location-outline"></i>
@@ -159,8 +161,6 @@
                     <el-menu
                             default-active="1"
                             class="leftMenu"
-                            @open="handleOpen"
-                            @close="handleClose"
                             @select="handleLeftMenuSelect">
                         <el-menu-item index="1">
                             <i class="el-icon-s-home"></i>
@@ -198,14 +198,8 @@
         </el-aside>
         <el-container>
             <el-main style="min-height: 90vh;">
-                <div style="width: 1000px; text-align: left">
-                    <el-steps :space="200" :active="1" finish-status="success">
-                        <el-step title="已完成"></el-step>
-                        <el-step title="进行中"></el-step>
-                        <el-step title="步骤 3"></el-step>
-                    </el-steps>
-                </div>
-
+<!--                <component :is="nowName"></component>-->
+                <myself></myself>
             </el-main>
             <el-footer>Footer</el-footer>
         </el-container>
@@ -213,10 +207,198 @@
 </div>
 
 
+<template id="mainTemplate">
+    <div>
+        <el-row>
+            <el-col :span="9">
+                <el-row>
+                    <el-col :span="24">
+                        <el-card class="box-card">
+                            <div class="daysDiv" font-family="PingFang SC">
+                                您已连续签到
+                            </div>
+                            <el-divider><i class="el-icon-mobile-phone" style="color: #005cbf"></i></el-divider>
+                            <div class="daysNumDiv">
+                                9 days
+                            </div>
+                        </el-card>
+                    </el-col>
+                </el-row>
+                <el-row type="flex">
+                    <el-col :span="24">
+                        <el-card class="box-card">
+                            <div style="text-align: left">
+                                <el-progress :text-inside="true" :stroke-width="26" :percentage="70"
+                                             style="margin-bottom: 10px"></el-progress>
+                                <el-progress :text-inside="true" :stroke-width="24" :percentage="100" status="success"
+                                             style="margin-bottom: 10px"></el-progress>
+                                <el-progress :text-inside="true" :stroke-width="22" :percentage="80" status="warning"
+                                             style="margin-bottom: 10px"></el-progress>
+                                <el-progress :text-inside="true" :stroke-width="20" :percentage="50"
+                                             status="exception"></el-progress>
+                            </div>
+
+                        </el-card>
+                    </el-col>
+                </el-row>
+
+                <el-row>
+                    <el-col :span="24">
+                        <el-card class="box-card">
+                            <div class="daysDiv" font-family="PingFang SC">
+                                请查看您的请假流程
+                            </div>
+                            <el-divider><p style="color: #005cbf">病假</p></el-divider>
+                            <div style=" margin-top: 20px; margin-left: 40px; text-align: left">
+                                <el-steps :space="200" :active="1" finish-status="success">
+                                    <el-step title="已完成"></el-step>
+                                    <el-step title="进行中"></el-step>
+                                    <el-step title="步骤 3"></el-step>
+                                    <el-step title="步骤 3"></el-step>
+                                </el-steps>
+                            </div>
+                        </el-card>
+                    </el-col>
+                </el-row>
+
+            </el-col>
+            <el-col :span="15">
+                <el-card class="calCard">
+                    <div class="calendarDiv">
+                        <el-calendar>
+                            <template slot="dateCell" slot-scope="{date, data}">
+                                <p>{{ data.day.split(\'-\').slice(1).join(\'-\') }} <br/> {{dealMyDate(data.day) }}
+                                </p>
+                            </template>
+                        </el-calendar>
+                    </div>
+                </el-card>
+            </el-col>
+        </el-row>
+    </div>
+</template>
 </body>
 
 <script>
 
+
+    Vue.component('jiaqi-page', {
+        template: "<div>\n" +
+            "                    <el-card class=\"box-card\">\n" +
+            "                        <template>\n" +
+            "                            <el-table\n" +
+            "                                    :data=\"jiaQiDate\"\n" +
+            "                                    stripe\n" +
+            "                                    style=\"width: 100%\">\n" +
+            "                                <el-table-column\n" +
+            "                                        prop=\"type\"\n" +
+            "                                        label=\"假期类型\"\n" +
+            "                                        width=\"180\">\n" +
+            "                                </el-table-column>\n" +
+            "                                <el-table-column\n" +
+            "                                        prop=\"days\"\n" +
+            "                                        label=\"剩余假期\"\n" +
+            "                                        width=\"180\">\n" +
+            "                                </el-table-column>\n" +
+            "\n" +
+            "                            </el-table>\n" +
+            "                        </template>\n" +
+            "                    </el-card>\n" +
+            "                </div>"
+        ,
+        data: function () {
+            return {
+                jiaQiDate: [{
+                    type: '年假',
+                    days: '10天',
+                }, {
+                    type: '病假',
+                    days: '10天',
+                },{
+                    type: '婚假',
+                    days: '10天',
+                },{
+                    type: '产检假',
+                    days: '10天',
+                },{
+                    type: '产假',
+                    days: '10天',
+                },{
+                    type: '哺乳假',
+                    days: '10天',
+                },{
+                    type: '陪产假',
+                    days: '10天',
+                },{
+                    type: '事假',
+                    days: '10天',
+                }]
+
+            }
+        },
+        methods: {
+
+        }
+    });
+    Vue.component('yinsi-page', {
+        template: "<div style=\"width: 550px\">\n" +
+            "                    <el-card class=\"box-card\">\n" +
+            "                        <div slot=\"header\" class=\"clearfix\">\n" +
+            "                            <span style=\"font-size: 30px; text-align: left\">因私请假</span>\n" +
+            "                        </div>\n" +
+            "                        <el-form ref=\"form\" :model=\"form\" label-width=\"80px\">\n" +
+            "                            <el-form-item label=\"请假原因\">\n" +
+            "                                <el-input v-model=\"form.name\"></el-input>\n" +
+            "                            </el-form-item>\n" +
+            "                            <el-form-item label=\"请假类型\" style=\"text-align: left\">\n" +
+            "                                <el-select v-model=\"form.region\" placeholder=\"请选择请假类型\">\n" +
+            "                                    <el-option label=\"年假\" value=\"nianjia\"></el-option>\n" +
+            "                                    <el-option label=\"病假\" value=\"bingjia\"></el-option>\n" +
+            "                                    <el-option label=\"婚假\" value=\"hunjia\"></el-option>\n" +
+            "                                    <el-option label=\"产检假\" value=\"chanjianjia\"></el-option>\n" +
+            "                                    <el-option label=\"产假\" value=\"chanjia\"></el-option>\n" +
+            "                                    <el-option label=\"哺乳假\" value=\"burujia\"></el-option>\n" +
+            "                                    <el-option label=\"陪产假\" value=\"peichanjia\"></el-option>\n" +
+            "                                    <el-option label=\"事假\" value=\"shijia\"></el-option>\n" +
+            "                                </el-select>\n" +
+            "                            </el-form-item>\n" +
+            "                            <el-form-item label=\"请假时间\">\n" +
+            "                                <el-col :span=\"11\">\n" +
+            "                                    <el-date-picker type=\"date\" placeholder=\"选择日期\" v-model=\"form.date1\" style=\"width: 100%;\"></el-date-picker>\n" +
+            "                                </el-col>\n" +
+            "                                <el-col class=\"line\" :span=\"2\">-</el-col>\n" +
+            "                                <el-col :span=\"11\">\n" +
+            "                                    <el-date-picker type=\"date\" placeholder=\"选择日期\" v-model=\"form.date2\" style=\"width: 100%;\"></el-date-picker>\n" +
+            "                                </el-col>\n" +
+            "                            </el-form-item>\n" +
+            "\n" +
+            "\n" +
+            "                            <el-form-item label=\"具体原因\">\n" +
+            "                                <el-input type=\"textarea\" v-model=\"form.desc\"></el-input>\n" +
+            "                            </el-form-item>\n" +
+            "                            <el-form-item label-width=\"auto\">\n" +
+            "                                <el-button type=\"primary\" @click=\"onSubmit\">立即创建</el-button>\n" +
+            "                            </el-form-item>\n" +
+            "                        </el-form>\n" +
+            "                    </el-card>\n" +
+            "                </div>"
+        ,
+        data: function () {
+            return {
+
+                form: {
+                    name: '',
+                    region: '',
+                    date1: '',
+                    date2: '',
+                    delivery: false,
+                    type: [],
+                    resource: '',
+                    desc: ''
+                }
+            }
+        },
+    });
     Vue.component('yingong-page', {
         template: "<div style=\"width: 550px;\">\n" +
             "                    <el-card class=\"box-card\" >\n" +
@@ -266,6 +448,8 @@
             }
         },
     });
+
+
     Vue.component('main-page', {
         template: '<div>\n' +
             '                    <el-row>\n' +
@@ -301,9 +485,18 @@
             '\n' +
             '                            <el-row >\n' +
             '                                <el-col :span="24">\n' +
-            '                                    <el-card class="box-card">\n' +
-            '                                        <div v-for="o in 4" :key="o" class="text item">\n' +
-            '                                            {{\'列表内容 \' + o }}\n' +
+            '                                    <el-card class="box-card" >\n' +
+            '                                        <div class="daysDiv" font-family="PingFang SC">\n' +
+            '                                            请查看您的请假流程\n' +
+            '                                        </div>\n' +
+            '                                        <el-divider><p style="color: #005cbf">病假</p></el-divider>\n' +
+            '                                        <div style=" margin-top: 20px; margin-left: 40px; text-align: left">\n' +
+            '                                           <el-steps :space="200" :active="1"  finish-status="success">\n' +
+            '                                               <el-step title="已完成"></el-step> \n' +
+            '                                               <el-step title="进行中"></el-step> \n' +
+            '                                               <el-step title="步骤 3"></el-step> \n' +
+            '                                               <el-step title="步骤 3"></el-step> \n' +
+            '                                           </el-steps> \n' +
             '                                        </div>\n' +
             '                                    </el-card>\n' +
             '                                </el-col>\n' +
@@ -345,8 +538,12 @@
                     type: [],
                     resource: '',
                     desc: ''
-                }
+                },
+                employee: {}
             }
+        },
+        mounted() {
+            this.getInfo();
         },
 
         methods: {
@@ -361,20 +558,29 @@
                     }
                 }
                 return res
+            },
+            getInfo() {
+                let uid = vue.user.id;
+                let url = "/employee/"+uid;
+                axios.get(url).then(function (response) {
+                    this.employee = response.data;
+                    console.log(this.employee);
+                })
             }
         }
     });
 
     var data4CalVue = {
+        circleUrl: "https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png",
         uri: 'login',
         result: [
             {"date":"2020-12-01","content":"放假"},
             {"date":"2020-12-02","content":"去交电费"},
             {"date":"2020-11-03","content":"去学习vue"}
         ],
-        user: {username: '', password: '', role: 0},
+        user: {id: 0, username: 'aaa', password: '', role: 0, name: ""},
         mainNames: [
-            "main-page", "yingong-page"
+            "myself", "yingong-page", "yinsi-page", "jiaqi-page"
         ],
         nowName: "main-page",
         form: {
@@ -386,29 +592,21 @@
             type: [],
             resource: '',
             desc: ''
-        }
+        },
+        input: ""
     };
-    new Vue({
+    var vue = new Vue({
         el: '#app',
         data: data4CalVue,
+        mounted: function() {
+            this.getUserInfo();
+        },
+        component: {
+            myself: {
+                template: '#mainTemplate'
+            }
+        },
         methods: {
-
-
-            dealMyDate: function (v) {
-                let len = this.result.length;
-                let res = "";
-                for (let i = 0; i < len; i++) {
-                    console.log("result:");
-                    console.log(this.result[i].date);
-                    console.log("vvvvvvv");
-                    console.log(v)
-                    if (this.result[i].date == v) {
-                        res = this.result[i].content;
-                        return '✔️'
-                    }
-                }
-                return res
-            },
 
             handleLeftMenuSelect: function (index) {
 
@@ -418,7 +616,10 @@
 
                 }else if(index == 2) {
                     this.nowName = this.mainNames[1];
-                }else {
+
+                }else if(index == 3) {
+                    this.nowName = this.mainNames[3];
+                } else {
                     this.nowName = this.mainNames[1];
                 }
                 console.log(this.nowName)
@@ -428,12 +629,28 @@
             handleCommand: function (command) {
                 if(command == "a") {
                     this.nowName = this.mainNames[1];
-                }else {
-                    this.nowName = this.mainNames[0];
+                }else if(command == "b"){
+                    this.nowName = this.mainNames[2];
                 }
+                return ;
+            },
 
+            getUserInfo: function () {
+                var url = "user";
+                axios.get(url).then(function (response) {
+                    vue.user = response.data;
+
+                })
+            },
+
+            getInfo: function () {
+                let uid = vue.user.id;
+                let url = "/employee/"+uid;
+                axios.get(url).then(function (response) {
+                    this.employee = response.data;
+                    console.log(this.employee);
+                })
             }
-
         }
     })
 
