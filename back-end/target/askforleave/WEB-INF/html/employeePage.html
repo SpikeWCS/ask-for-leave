@@ -395,7 +395,7 @@
             '                                        </div>\n' +
             '                                        <el-divider><i class="el-icon-mobile-phone" style="color: #005cbf"></i></el-divider>\n' +
             '                                        <div class="daysNumDiv">\n' +
-            '                                            9 days\n' +
+            '                                            {{lianXuDays}} days\n' +
             '                                        </div>\n' +
             '                                    </el-card>\n' +
             '                                </el-col>\n' +
@@ -441,8 +441,8 @@
             '                                <div class="calendarDiv">\n' +
             '                                    <el-calendar>\n' +
             '                                        <template slot="dateCell"  slot-scope="{date, data}">\n' +
-            '                                            <p>\n' +
-            '                                                {{ data.day.split(\'-\').slice(1).join(\'-\') }} <br/> {{dealMyDate(data.day) }}' +
+            '                                            <p @click="signin(data.day)" :class="data.isSelected ? \'is-selected\' : \'\'">\n' +
+            '                                                {{ data.day.split(\'-\').slice(1).join(\'-\') }}<br/> {{dealMyDate(data.day) }} {{ data.isSelected ? \'✔️\' : \'\'}}' +
             '                                            </p>\n' +
             '                                        </template>\n' +
             '                                    </el-calendar>\n' +
@@ -472,6 +472,7 @@
                 },
                 employee: {},
                 user: {id: 0, username: 'aaa', password: '', role: 0, name: ""},
+                lianXuDays: 0,
             }
         },
         mounted(){
@@ -489,11 +490,40 @@
                         var dates = that.employee.signInDates;
                         that.result = dates.split(',');
                         console.log(that.result);
+                        that.lianXuDays = that.getLianXuDays(that.result)
                     }
                 })
             })
         },
         methods: {
+            formatDate(date) {
+                console.log(date);
+                date = new Date(Date.parse(date.replace(/-/g, "/"))); //转换成Data();
+                console.log(date);
+                var y = date.getFullYear();
+                console.log(y);
+                var m = date.getMonth() + 1;
+                m = m < 10 ? '0' + m : m;
+                var d = date.getDate();
+                d = d < 10 ? ('0' + d) : d;
+                return y + '-' + m + '-' + d;
+            },
+            signin(data) {
+              console.log(data + "被点击了")
+                var date = new Date();
+                var y = date.getFullYear();
+                var m = date.getMonth()+1;
+                var d = date.getDate();
+                var today = y+'-'+m+'-'+d;
+                today = this.formatDate(today);
+                console.log(this.employee.hiredate);
+                var hireday = this.employee.hiredate;
+                if( today == data && today != hireday) {
+                    console.log("签到成功!")
+                    this.lianXuDays = this.lianXuDays + 1
+                    this.employee.hiredate = today
+                }
+            },
             dealMyDate(v) {
                 let len = this.result.length;
                 let res = "";
@@ -521,6 +551,40 @@
                     Vue.user = response.data;
 
                 })
+            },
+            getLianXuDays: function (dates) {
+                var arr = dates;
+                var date = new Date();
+                var y = date.getFullYear();
+                var m = date.getMonth()+1;
+                var d = date.getDate();
+                var today = y+'-'+m+'-'+d;
+                console.log(today);
+                //转时间戳
+                function time(date){
+                    return new Date(date);
+                }
+                var num = 0;//声明计数变量;
+                var le = arr.length;//数组长度;
+                console.log(time(today)-time(arr[le-1]));
+                if(time(today)-time(arr[le-1])==57600000)
+                //日期时间戳相差一天则连续,此法虽笨,但实用;判断当前日期与最近一天
+                {
+                    num=1;//满足条件,连续2天;
+                    //然后对数组循环判断,满足则num++;否则中断循环;
+                    for(var i=le; i>0; i--){
+                        if(time(arr[i-1])-time(arr[i-2])==86400000){
+                            num++;
+                        }else{
+                            break;//如果只要找出所有连续的天数,不需要中断
+                        }
+
+                    }
+                    console.log(num);
+                }else{
+                    console.log('第一天');
+                }
+                return num;
             }
         }
     });

@@ -135,182 +135,57 @@
 </style>
 
 <body>
-<div id="app">
-    <my-com3></my-com3>
-    <div>
-        <el-row>
-            <el-col :span="9">
-                <el-row>
-                    <el-col :span="24">
-                        <el-card class="box-card">
-                            <div class="daysDiv" font-family="PingFang SC">
-                                您已连续签到
-                            </div>
-                            <el-divider><i class="el-icon-mobile-phone" style="color: #005cbf"></i></el-divider>
-                            <div class="daysNumDiv">
-                                9 days
-                            </div>
-                        </el-card>
-                    </el-col>
-                </el-row>
 
-                <el-row type="flex">
-                    <el-col :span="24">
-                        <el-card class="box-card">
-                            <div style="text-align: left">
-                                <el-progress :text-inside="true" :stroke-width="26" :percentage="70"
-                                             style="margin-bottom: 10px"></el-progress>
-                                <el-progress :text-inside="true" :stroke-width="24" :percentage="100" status="success"
-                                             style="margin-bottom: 10px"></el-progress>
-                                <el-progress :text-inside="true" :stroke-width="22" :percentage="80" status="warning"
-                                             style="margin-bottom: 10px"></el-progress>
-                                <el-progress :text-inside="true" :stroke-width="20" :percentage="50"
-                                             status="exception"></el-progress>
-                            </div>
 
-                        </el-card>
-                    </el-col>
-                </el-row>
-                <el-row>
-                    <el-col :span="24">
-                        <el-card class="box-card">
-                            <div class="daysDiv" font-family="PingFang SC">
-                                请查看您的请假流程
-                            </div>
-                            <el-divider><p style="color: #005cbf">病假</p></el-divider>
-                            <div style=" margin-top: 20px; margin-left: 40px; text-align: left">
-                                <el-steps :space="200" :active="1" finish-status="success">
-                                    <el-step title="已完成"></el-step>
-                                    <el-step title="进行中"></el-step>
-                                    <el-step title="步骤 3"></el-step>
-                                    <el-step title="步骤 3"></el-step>
-                                </el-steps>
-                            </div>
-                        </el-card>
-                    </el-col>
-                </el-row>
-            </el-col>
-            <el-col :span="15">
-                <el-card class="calCard">
-                    <div class="calendarDiv">
-                        <el-calendar>
-                            <template slot="dateCell" slot-scope="{date, data}">
-                                <p>{{ data.day.split(\'-\').slice(1).join(\'-\') }} <br/> {{dealMyDate(data.day) }}
-                                </p>
-                            </template>
-                        </el-calendar>
-                    </div>
-                </el-card>
-            </el-col>
-        </el-row>
-    </div>
-</div>
-<div id="app2">
-    <myself></myself>
-    <my-com3></my-com3>
-</div>
-
-<template id="tmpl">
     <h2>
         现在学习一下定义的私有组件，
         只能在#app2当中使用，
         之前定义的都是全局的，
     </h2>
-</template>
 
-
-<template id="tmpl2">
-
-    <div>
-        <el-row>
-            <el-col :span="9">
-                <el-row>
-                    <el-col :span="24">
-                        <el-card class="box-card">
-                            <div class="daysDiv" font-family="PingFang SC">
-                                您已连续签到
-                            </div>
-                            <el-divider><i class="el-icon-mobile-phone" style="color: #005cbf"></i></el-divider>
-                            <div class="daysNumDiv">
-                                9 days
-                            </div>
-                        </el-card>
-                    </el-col>
-                </el-row>
-
-                <el-row type="flex">
-                    <el-col :span="24">
-                        <el-card class="box-card">
-                            <div style="text-align: left">
-                                <el-progress :text-inside="true" :stroke-width="26" :percentage="70"
-                                             style="margin-bottom: 10px"></el-progress>
-                                <el-progress :text-inside="true" :stroke-width="24" :percentage="100" status="success"
-                                             style="margin-bottom: 10px"></el-progress>
-                                <el-progress :text-inside="true" :stroke-width="22" :percentage="80" status="warning"
-                                             style="margin-bottom: 10px"></el-progress>
-                                <el-progress :text-inside="true" :stroke-width="20" :percentage="50"
-                                             status="exception"></el-progress>
-                            </div>
-
-                        </el-card>
-                    </el-col>
-                </el-row>
-                <el-row>
-                    <el-col :span="24">
-                        <el-card class="box-card">
-                            <div class="daysDiv" font-family="PingFang SC">
-                                请查看您的请假流程
-                            </div>
-                            <el-divider><p style="color: #005cbf">病假</p></el-divider>
-                            <div style=" margin-top: 20px; margin-left: 40px; text-align: left">
-                                <el-steps :space="200" :active="1" finish-status="success">
-                                    <el-step title="已完成"></el-step>
-                                    <el-step title="进行中"></el-step>
-                                    <el-step title="步骤 3"></el-step>
-                                    <el-step title="步骤 3"></el-step>
-                                </el-steps>
-                            </div>
-                        </el-card>
-                    </el-col>
-                </el-row>
-            </el-col>
-            <el-col :span="15">
-                <el-card class="calCard">
-                    <div class="calendarDiv">
-                        <el-calendar>
-                            <template slot="dateCell" slot-scope="{date, data}">
-                                <p>{{ data.day.split(\'-\').slice(1).join(\'-\') }} <br/> {{dealMyDate(data.day) }}
-                                </p>
-                            </template>
-                        </el-calendar>
-                    </div>
-                </el-card>
-            </el-col>
-        </el-row>
-    </div>
-</template>
 <script>
-    Vue.component('myCom3',{
-        template: '#tmpl'
-    });
-    //创建vue实例
-    var vm = new Vue({
-        el: '#app',
-        data:{},
-        methods:{}
-    })
 
+    function lianxuDay(){
+        var arr = [
+            '2016-02-28',
+            '2020-12-04',
+            '2020-12-05',
+            '2020-12-06',
+            '2020-12-07'
+        ];
+        var date = new Date();
+        var y = date.getFullYear();
+        var m = date.getMonth()+1;
+        var d = date.getDate();
+        var today = y+'-'+m+'-'+d;
 
-    var vm1 = new Vue({
-        el: '#app2',
-        data: {},
-        components:{
-            //定义实例内部私有组件
-            myself: {
-                template:'#tmpl2'
-            }
+        console.log(today);
+        //转时间戳
+        function time(date){
+            return new Date(date);
         }
-    })
+        var num = 0;//声明计数变量;
+        var le = arr.length;//数组长度;
+        console.log(time(today)-time(arr[le-1]));
+        if(time(today)-time(arr[le-1])==57600000)
+        //日期时间戳相差一天则连续,此法虽笨,但实用;判断当前日期与最近一天
+        {
+            num=2;//满足条件,连续2天;
+            //然后对数组循环判断,满足则num++;否则中断循环;
+            for(var i=le; i>0; i--){
+                if(time(arr[i-1])-time(arr[i-2])==86400000){
+                    num++;
+                }else{
+                    break;//如果只要找出所有连续的天数,不需要中断
+                }
+
+            }
+            console.log(num);
+        }else{
+            console.log('第一天');
+        }
+    }
+    lianxuDay();
 </script>
 </body>
 </html>
