@@ -183,7 +183,7 @@
             <el-main style="height: 90vh;">
                 <component :is="nowName"></component>
             </el-main>
-            <el-footer>Footer</el-footer>
+            <el-footer>© 2015-2020 TJU — All Rights Reserved.</el-footer>
         </el-container>
     </el-container>
 </div>
@@ -288,63 +288,7 @@
                     startDate: '2020-12-01',
                     endDate: '2020-12-06',
                     type: 1
-                }, {
-                    id: '1',
-                    title: '生病了',
-                    reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
-                    startDate: '2020-12-01',
-                    endDate: '2020-12-06',
-                    type: 1
-                },
-                    {
-                        id: '1',
-                        title: '生病了',
-                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
-                        startDate: '2020-12-01',
-                        endDate: '2020-12-06',
-                        type: 1
-                    },
-                    {
-                        id: '1',
-                        title: '生病了',
-                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
-                        startDate: '2020-12-01',
-                        endDate: '2020-12-06',
-                        type: 1
-                    },
-                    {
-                        id: '1',
-                        title: '生病了',
-                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
-                        startDate: '2020-12-01',
-                        endDate: '2020-12-06',
-                        type: 1
-                    },
-                    {
-                        id: '1',
-                        title: '生病了',
-                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
-                        startDate: '2020-12-01',
-                        endDate: '2020-12-06',
-                        type: 1
-                    },
-                    {
-                        id: '1',
-                        title: '生病了',
-                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
-                        startDate: '2020-12-01',
-                        endDate: '2020-12-06',
-                        type: 1
-                    },
-                    {
-                        id: '1',
-                        title: '生病了',
-                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
-                        startDate: '2020-12-01',
-                        endDate: '2020-12-06',
-                        type: 1
-                    },
-
+                    }
                 ],
 
                 dialogVisible: false,
@@ -352,6 +296,21 @@
                 index: 0,
                 rows: 0
             }
+        },
+        mounted() {
+            this.$nextTick(()=>{
+                var that=this;
+                let url = "/leaveform";
+                $.ajax({
+                    type:"get",
+                    url: url,
+                    success:function(data){
+
+                        that.tableData = data;
+
+                    }
+                })
+            })
         },
         methods: {
 
@@ -409,6 +368,9 @@
                         return "事假";
                         break;
                 }
+            },
+            getUserInfo: function() {
+
             }
         }
     });
@@ -502,54 +464,6 @@
                     endDate: '2020-12-06',
                     type: 1
                 },
-                    {
-                        id: '1',
-                        title: '生病了',
-                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
-                        startDate: '2020-12-01',
-                        endDate: '2020-12-06',
-                        type: 1
-                    },
-                    {
-                        id: '1',
-                        title: '生病了',
-                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
-                        startDate: '2020-12-01',
-                        endDate: '2020-12-06',
-                        type: 1
-                    },
-                    {
-                        id: '1',
-                        title: '生病了',
-                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
-                        startDate: '2020-12-01',
-                        endDate: '2020-12-06',
-                        type: 1
-                    },
-                    {
-                        id: '1',
-                        title: '生病了',
-                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
-                        startDate: '2020-12-01',
-                        endDate: '2020-12-06',
-                        type: 1
-                    },
-                    {
-                        id: '1',
-                        title: '生病了',
-                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
-                        startDate: '2020-12-01',
-                        endDate: '2020-12-06',
-                        type: 1
-                    },
-                    {
-                        id: '1',
-                        title: '生病了',
-                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
-                        startDate: '2020-12-01',
-                        endDate: '2020-12-06',
-                        type: 1
-                    },
                 ],
                 activities: [{
                     content: '未进行审批',
@@ -570,6 +484,21 @@
                     timestamp: '结果'
                 }]
             }
+        },
+        mounted() {
+            this.$nextTick(()=>{
+                var that=this;
+                let url = "/leaveform";
+                $.ajax({
+                    type:"get",
+                    url: url,
+                    success:function(data){
+
+                        that.chakanData = data;
+
+                    }
+                })
+            })
         },
         methods: {
 
@@ -616,7 +545,6 @@
 
             handleLeftMenuSelect: function (index) {
 
-                console.log(index)
                 if(index == 1) {
                     this.nowName = this.mainNames[0];
 
