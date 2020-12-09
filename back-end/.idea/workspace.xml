@@ -9,15 +9,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" line="23" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2885b6e2-28f6-4750-848e-825f9466ae42" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/loginPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/shan/askforleave/controller/AdminPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/shan/askforleave/controller/AdminPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/askforleave/WEB-INF/classes/com/shan/askforleave/controller/AdminPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/askforleave/WEB-INF/classes/com/shan/askforleave/controller/AdminPageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/askforleave/WEB-INF/html/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/shan/askforleave/controller/AdminPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/shan/askforleave/controller/AdminPageController.class" afterDir="false" />
-    </list>
+    <list default="true" id="2885b6e2-28f6-4750-848e-825f9466ae42" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -79,7 +71,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/html/loginPage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
+            <state relative-caret-position="458">
               <caret line="100" column="60" selection-start-line="100" selection-start-column="60" selection-end-line="100" selection-end-column="60" />
             </state>
           </provider>
@@ -670,7 +662,7 @@
       <workItem from="1606890198623" duration="5796000" />
       <workItem from="1607258935692" duration="1901000" />
       <workItem from="1607325664396" duration="53543000" />
-      <workItem from="1607517054070" duration="248000" />
+      <workItem from="1607517054070" duration="346000" />
     </task>
     <servers />
   </component>
@@ -683,7 +675,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106633000" />
+    <option name="totallyTimeSpent" value="106731000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1140,16 +1132,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-          <folding>
-            <element signature="e#130#131#0" expanded="true" />
-            <element signature="e#155#156#0" expanded="true" />
-            <element signature="e#188#189#0" expanded="true" />
-            <element signature="e#216#217#0" expanded="true" />
-            <element signature="e#243#244#0" expanded="true" />
-            <element signature="e#269#270#0" expanded="true" />
-            <element signature="e#304#305#0" expanded="true" />
-            <element signature="e#334#335#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1207,7 +1189,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/html/loginPage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
+        <state relative-caret-position="458">
           <caret line="100" column="60" selection-start-line="100" selection-start-column="60" selection-end-line="100" selection-end-column="60" />
         </state>
       </provider>
