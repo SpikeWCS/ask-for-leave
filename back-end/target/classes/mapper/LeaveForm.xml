@@ -14,4 +14,11 @@
         select * from leave_form where id= #{id}
     </select>
 
+    <select id="find" parameterType="LeaveForm" resultType="LeaveForm">
+        select * from leave_form where title= #{title} and startDate = #{startDate} and endDate = #{endDate} and reason = #{reason} and type = #{type}
+    </select>
+
+    <select id="list" resultType="LeaveForm">
+        select * from leave_form
+    </select>
 </mapper>
