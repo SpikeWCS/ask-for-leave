@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AskForLeave page</title>
+
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui@2.14.1/lib/theme-chalk/index.css">
+
+
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui@2.14.1/lib/index.js"></script>
+    <script src="https://how2j.cn/study/jquery.min.js"></script>
+    <script src="https://how2j.cn/study/axios.min.js"></script>
+</head>
+<style>
+    .el-row {
+    }
+    .el-col {
+        border-radius: 4px;
+    }
+
+    .el-aside {
+        color: #333;
+        text-align: center;
+    }
+
+    .el-main {
+        background-color: #E9EEF3;
+        color: #333;
+        text-align: center;
+    }
+
+
+
+    .content {
+        /*background: #99a9bf;*/
+        height: 100px;
+        border-bottom: 1px solid gray;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .contentTitle {
+        float: left;
+    }
+    a {
+        text-decoration: none;
+    }
+    .bg-purple {
+        background: #d3dce6;
+    }
+    .grid-content {
+        border-radius: 4px;
+        min-height: 36px;
+    }
+    .itemDiv {
+        float: left;
+        margin-right: 13px;
+    }
+    .item {
+        margin-right: 5px;
+    }
+    .itemText {
+        font-size: 13px;
+    }
+    a {
+        color: black;
+    }
+
+    .headImage {
+        margin-top: 20px;
+    }
+
+    #name {
+        font-family: "PingFang SC";
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    #search {
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+
+    }
+
+    .topHeadImage {
+    }
+
+    .topBar {
+        height: 150px;
+    }
+
+    .calCard{
+        margin-left: 20px;
+    }
+
+    .box-card {
+        margin-bottom: 20px;
+    }
+
+    .daysDiv {
+        font-size: 25px;
+    }
+
+    .daysNumDiv {
+        font-size: 30px;
+        color: #005cbf
+    }
+
+    .jiaQiJinDuDiv {
+        height: 150px;
+    }
+    .text {
+        font-size: 14px;
+    }
+
+    .item {
+        margin-bottom: 18px;
+    }
+
+    .clearfix:before,
+    .clearfix:after {
+        display: table;
+        content: "";
+    }
+    .clearfix:after {
+        clear: both
+    }
+
+
+</style>
+<body>
+<div id="app">
+    <el-container>
+        <el-aside width="240px">
+            <el-row class="tac">
+
+                <el-col :span="24">
+                    <div class="headImage">
+                        <div class="block">
+                            <el-avatar :size="50" :src="circleUrl">
+                                <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"/>
+                            </el-avatar>
+                        </div>
+                    </div> <!-- 头像 -->
+                    <div id="name">
+                        <p>{{user.name}}</p>
+                    </div>
+                    <div id="location" >
+                        <i class="el-icon-location-outline"></i>
+                        <span slot="title">TianJin, China</span>
+                    </div>
+                    <div id="search">
+                        <el-input size="small" v-model="input" placeholder="请输入内容" prefix-icon="el-icon-search"></el-input>
+                    </div>
+
+                    <el-menu
+                            default-active="1"
+                            class="leftMenu"
+                            @select="handleLeftMenuSelect">
+                        <el-menu-item index="1">
+                            <i class="el-icon-s-home"></i>
+                            <span @>批假</span>
+                        </el-menu-item>
+
+                        <el-menu-item index="2" >
+                            <i class="el-icon-document"></i>
+                            <span slot="title">查看</span>
+                        </el-menu-item>
+
+
+                    </el-menu> <!-- 分类标签 -->
+                </el-col>
+
+            </el-row>
+        </el-aside>
+        <el-container>
+            <el-main style="height: 90vh;">
+                <component :is="nowName"></component>
+            </el-main>
+            <el-footer>Footer</el-footer>
+        </el-container>
+    </el-container>
+</div>
+
+
+</body>
+
+<script>
+
+
+    Vue.component('pijia-page', {
+        template: '<div>\n' +
+            '                    <el-row>\n' +
+            '                        <el-col :span="24">\n' +
+            '                            <template>\n' +
+            '                                <el-table\n' +
+            '                                        :data="tableData"\n' +
+            '                                        style="width: 100%; "\n' +
+            '                                        min-height="100vh"\n' +
+            '                                >\n' +
+            '                                    <el-table-column\n' +
+            '                                            fixed\n' +
+            '                                            prop="id"\n' +
+            '                                            label="ID"\n' +
+            '                                            width="80"\n' +
+            '                                            >\n' +
+            '                                    </el-table-column>\n' +
+            '                                    <el-table-column\n' +
+            '                                            prop="title"\n' +
+            '                                            label="标题"\n' +
+            '                                            width="120">\n' +
+            '                                    </el-table-column>\n' +
+            '                                    <el-table-column\n' +
+            '                                            prop="reason"\n' +
+            '                                            label="详情"\n' +
+            '                                            width="340">\n' +
+            '                                    </el-table-column>\n' +
+            '                                    <el-table-column\n' +
+            '                                            prop="startDate"\n' +
+            '                                            label="开始日期"\n' +
+            '                                            width="120">\n' +
+            '                                    </el-table-column>\n' +
+            '                                    <el-table-column\n' +
+            '                                            prop="endDate"\n' +
+            '                                            label="结束日期"\n' +
+            '                                            width="120">\n' +
+            '                                    </el-table-column>\n' +
+            '                                    <el-table-column\n' +
+            '                                            prop="type"\n' +
+            '                                            label="类型"\n' +
+            '                                            width="100">\n' +
+            '                                    </el-table-column>\n' +
+            '                                    <el-table-column\n' +
+            '                                            fixed="right"\n' +
+            '                                            label="操作"\n' +
+            '                                            width="120">\n' +
+            '                                        <template slot-scope="scope">\n' +
+            '                                            <el-button\n' +
+            '                                                    @click.native.prevent="deleteRow(scope.$index, tableData)"\n' +
+            '                                                    type="text"\n' +
+            '                                                    size="small">\n' +
+            '                                                同意\n' +
+            '                                            </el-button>\n' +
+            '\n' +
+            '                                            <el-button\n' +
+            '                                                    @click.native.prevent="rejectClicked(scope.$index, tableData)"\n' +
+            '                                                    type="text"\n' +
+            '                                                    size="small">\n' +
+            '                                                反对\n' +
+            '                                            </el-button>\n' +
+            '                                        </template>\n' +
+            '                                    </el-table-column>\n' +
+            '                                </el-table>\n' +
+            '                            </template>\n' +
+            '                        </el-col>\n' +
+            '                    </el-row>\n' +
+            '                    <el-dialog\n' +
+            '                            title="反对原因"\n' +
+            '                            :visible.sync="dialogVisible"\n' +
+            '                            width="30%"\n' +
+            '                            :before-close="handleClose">\n' +
+            '\n' +
+            '                        <el-input\n' +
+            '                                type="textarea"\n' +
+            '                                :autosize="{ minRows: 4, maxRows: 7}"\n' +
+            '                                placeholder="请输入内容"\n' +
+            '                                v-model="reasonText">\n' +
+            '                        </el-input>\n' +
+            '                        <span slot="footer" class="dialog-footer">\n' +
+            '                        <el-button @click="dialogVisible = false">取 消</el-button>\n' +
+            '                        <el-button type="primary" @click="submitReason">确 定</el-button>\n' +
+            '                     </span>\n' +
+            '                    </el-dialog>\n' +
+            '                </div>'
+        ,
+        data: function () {
+            return {
+                tableData: [{
+                    id: '1',
+                    title: '生病了',
+                    reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
+                    startDate: '2020-12-01',
+                    endDate: '2020-12-06',
+                    type: 1
+                }, {
+                    id: '1',
+                    title: '生病了',
+                    reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
+                    startDate: '2020-12-01',
+                    endDate: '2020-12-06',
+                    type: 1
+                },
+                    {
+                        id: '1',
+                        title: '生病了',
+                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
+                        startDate: '2020-12-01',
+                        endDate: '2020-12-06',
+                        type: 1
+                    },
+                    {
+                        id: '1',
+                        title: '生病了',
+                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
+                        startDate: '2020-12-01',
+                        endDate: '2020-12-06',
+                        type: 1
+                    },
+                    {
+                        id: '1',
+                        title: '生病了',
+                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
+                        startDate: '2020-12-01',
+                        endDate: '2020-12-06',
+                        type: 1
+                    },
+                    {
+                        id: '1',
+                        title: '生病了',
+                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
+                        startDate: '2020-12-01',
+                        endDate: '2020-12-06',
+                        type: 1
+                    },
+                    {
+                        id: '1',
+                        title: '生病了',
+                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
+                        startDate: '2020-12-01',
+                        endDate: '2020-12-06',
+                        type: 1
+                    },
+                    {
+                        id: '1',
+                        title: '生病了',
+                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
+                        startDate: '2020-12-01',
+                        endDate: '2020-12-06',
+                        type: 1
+                    },
+
+                ],
+
+                dialogVisible: false,
+                reasonText: "",
+                index: 0,
+                rows: 0
+            }
+        },
+        methods: {
+
+            deleteRow(index, rows) {
+                rows.splice(index, 1);
+            },
+
+            rejectClicked: function (index, rows) {
+
+                this.dialogVisible = true;
+                this.index = index;
+                this.rows = rows;
+            }
+            ,
+            submitReason: function () {
+                this.dialogVisible = false;
+                this.deleteRow(this.index,this.rows);
+            },
+
+            handleClose(done) {
+                this.$confirm('确认关闭？')
+                    .then(_ => {
+                        done();
+                    })
+                    .catch(_ => {});
+            },
+
+            getTypeString: function (type) {
+                switch (type) {
+                    case -1:
+                        return "因公请假";
+                        break;
+                    case 0:
+                        return "年假";
+                        break;
+                    case 1:
+                        return "病假";
+                        break;
+                    case 2:
+                        return "婚假";
+                        break;
+                    case 3:
+                        return "产检假";
+                        break;
+                    case 4:
+                        return "产假";
+                        break;
+                    case 5:
+                        return "哺乳假";
+                        break;
+                    case 6:
+                        return "陪产假";
+                        break;
+                    case 6:
+                        return "事假";
+                        break;
+                }
+            }
+        }
+    });
+
+
+
+    Vue.component('chakan-page', {
+        template: '<div>\n' +
+            '                    <el-row>\n' +
+            '                        <el-col :span="18">\n' +
+            '                            <template>\n' +
+            '                                <el-table\n' +
+            '                                        :data="chakanData"\n' +
+            '                                        style="width: 100%; "\n' +
+            '                                        min-height="100vh"\n' +
+            '                                >\n' +
+            '                                    <el-table-column\n' +
+            '                                            fixed\n' +
+            '                                            prop="id"\n' +
+            '                                            label="ID"\n' +
+            '                                            width="80"\n' +
+            '                                    >\n' +
+            '                                    </el-table-column>\n' +
+            '                                    <el-table-column\n' +
+            '                                            prop="title"\n' +
+            '                                            label="标题"\n' +
+            '                                            width="120">\n' +
+            '                                    </el-table-column>\n' +
+            '                                    <el-table-column\n' +
+            '                                            prop="reason"\n' +
+            '                                            label="详情"\n' +
+            '                                            width="300">\n' +
+            '                                    </el-table-column>\n' +
+            '                                    <el-table-column\n' +
+            '                                            prop="startDate"\n' +
+            '                                            label="开始日期"\n' +
+            '                                            width="120">\n' +
+            '                                    </el-table-column>\n' +
+            '                                    <el-table-column\n' +
+            '                                            prop="endDate"\n' +
+            '                                            label="结束日期"\n' +
+            '                                            width="120">\n' +
+            '                                    </el-table-column>\n' +
+            '                                    <el-table-column\n' +
+            '                                            prop="type"\n' +
+            '                                            label="类型"\n' +
+            '                                            width="100">\n' +
+            '                                    </el-table-column>\n' +
+            '\n' +
+            '                                </el-table>\n' +
+            '                            </template>\n' +
+            '                        </el-col>\n' +
+            '                        <el-col :span="6">\n' +
+            '                            <div class="block" style="margin-left: 20px">\n' +
+            '                                <el-card class="box-card" >\n' +
+            '\n' +
+            '                                    <el-timeline>\n' +
+            '                                        <el-timeline-item\n' +
+            '                                                v-for="(activity, index) in activities"\n' +
+            '                                                :key="index"\n' +
+            '                                                :icon="activity.icon"\n' +
+            '                                                :type="activity.type"\n' +
+            '                                                :color="activity.color"\n' +
+            '                                                :size="activity.size"\n' +
+            '                                                :timestamp="activity.timestamp">\n' +
+            '                                            {{activity.content}}\n' +
+            '                                        </el-timeline-item>\n' +
+            '                                    </el-timeline>\n' +
+            '                                </el-card>\n' +
+            '\n' +
+            '                            </div>\n' +
+            '                        </el-col>\n' +
+            '                    </el-row>\n' +
+            '\n' +
+            '                </div>'
+        ,
+        data: function () {
+            return {
+                chakanData: [{
+                    id: '1',
+                    title: '生病了',
+                    reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
+                    startDate: '2020-12-01',
+                    endDate: '2020-12-06',
+                    type: 1
+                }, {
+                    id: '1',
+                    title: '生病了',
+                    reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
+                    startDate: '2020-12-01',
+                    endDate: '2020-12-06',
+                    type: 1
+                },
+                    {
+                        id: '1',
+                        title: '生病了',
+                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
+                        startDate: '2020-12-01',
+                        endDate: '2020-12-06',
+                        type: 1
+                    },
+                    {
+                        id: '1',
+                        title: '生病了',
+                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
+                        startDate: '2020-12-01',
+                        endDate: '2020-12-06',
+                        type: 1
+                    },
+                    {
+                        id: '1',
+                        title: '生病了',
+                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
+                        startDate: '2020-12-01',
+                        endDate: '2020-12-06',
+                        type: 1
+                    },
+                    {
+                        id: '1',
+                        title: '生病了',
+                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
+                        startDate: '2020-12-01',
+                        endDate: '2020-12-06',
+                        type: 1
+                    },
+                    {
+                        id: '1',
+                        title: '生病了',
+                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
+                        startDate: '2020-12-01',
+                        endDate: '2020-12-06',
+                        type: 1
+                    },
+                    {
+                        id: '1',
+                        title: '生病了',
+                        reason: '上海上海市普陀区金沙江路 1518 弄上海市普陀区金沙江路 1518 弄',
+                        startDate: '2020-12-01',
+                        endDate: '2020-12-06',
+                        type: 1
+                    },
+                ],
+                activities: [{
+                    content: '未进行审批',
+                    timestamp: '',
+                    size: 'large',
+                    type: 'primary',
+                    icon: 'el-icon-more'
+                }, {
+                    content: '已完成',
+                    timestamp: '初审',
+                    color: '#0bbd87'
+                }, {
+                    content: '已结束',
+                    timestamp: '二审',
+                    size: 'large'
+                }, {
+                    content: '已结束',
+                    timestamp: '结果'
+                }]
+            }
+        },
+        methods: {
+
+        }
+    });
+
+
+
+
+    var data4CalVue = {
+        circleUrl: "https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png",
+        uri: 'login',
+        result: [
+            {"date":"2020-12-01","content":"放假"},
+            {"date":"2020-12-02","content":"去交电费"},
+            {"date":"2020-11-03","content":"去学习vue"}
+        ],
+        user: {id: 0, username: 'aaa', password: '', role: 0, name: ""},
+        mainNames: [
+            "pijia-page", "chakan-page", "yinsi-page", "jiaqi-page"
+        ],
+        nowName: "pijia-page",
+        form: {
+            name: '',
+            region: '',
+            date1: '',
+            date2: '',
+            delivery: false,
+            type: [],
+            resource: '',
+            desc: ''
+        },
+        input: "",
+
+
+    };
+    var vue = new Vue({
+        el: '#app',
+        data: data4CalVue,
+        mounted: function() {
+            // this.getUserInfo();
+        },
+        methods: {
+
+            handleLeftMenuSelect: function (index) {
+
+                console.log(index)
+                if(index == 1) {
+                    this.nowName = this.mainNames[0];
+
+                }else if(index == 2) {
+                    this.nowName = this.mainNames[1];
+
+                }else if(index == 3) {
+                    this.nowName = this.mainNames[3];
+                } else {
+                    this.nowName = this.mainNames[1];
+                }
+                console.log(this.nowName)
+            },
+
+            // 处理 请假栏 - 因公 因私 的点击事件
+            handleCommand: function (command) {
+                if(command == "a") {
+                    this.nowName = this.mainNames[1];
+                }else if(command == "b"){
+                    this.nowName = this.mainNames[2];
+                }
+                return ;
+            },
+
+            getUserInfo: function () {
+                var url = "user";
+                axios.get(url).then(function (response) {
+                    vue.user = response.data;
+
+                })
+            },
+        }
+    })
+
+</script>
+</html>

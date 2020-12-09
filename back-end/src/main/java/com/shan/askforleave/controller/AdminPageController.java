@@ -25,4 +25,9 @@ public class AdminPageController {
         return "employeePage";
     }
 
+
+    @RequestMapping("/little_manager_page")
+    public String littleManager() {
+        return "littleManagerPage";
+    }
 }
