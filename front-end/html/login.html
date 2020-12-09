@@ -18,56 +18,56 @@
 
 </head>
 <body>
-    <div class="container-fluid h-100">
-        <div class="page row align-items-center justify-content-center">
-            <div class="col-md-5">
-                <div class="loginContent">
-                    <div class="row no-gutters">
-                        <div class="col-xl-12">
-                            <div class=" auth-form" id="workingArea">
-                                <h4 class="text-center mb-4">请登录</h4>
+<div class="container-fluid h-100">
+    <div class="page row align-items-center justify-content-center">
+        <div class="col-md-5">
+            <div class="loginContent">
+                <div class="row no-gutters">
+                    <div class="col-xl-12">
+                        <div class=" auth-form" id="workingArea">
+                            <h4 class="text-center mb-4">请登录</h4>
 
-                                    <div class="form-group">
-                                        <label class="mb-1"><strong>账号</strong></label>
-                                        <input type="text" class="form-control" value="" placeholder="请输入您的账号" v-model="user.username">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="mb-1"><strong>密码</strong></label>
-                                        <input type="password" class="form-control" value="" placeholder="请输入您的密码" v-model="user.password">
-                                    </div>
-                                    <div class="form-row d-flex justify-content-between mt-4 mb-2">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="ruleRadios" id="roleRadio1" value="0" v-model="user.role">
-                                            <label class="form-check-label" for="roleRadio1">一般员工</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="ruleRadios" id="roleRadio2" value="1" v-model="user.role">
-                                            <label class="form-check-label" for="roleRadio2">部门经理</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="ruleRadios" id="roleRadio3" value="2" v-model="user.role">
-                                            <label class="form-check-label" for="roleRadio3">总经理</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="ruleRadios" id="roleRadio4" value="3" v-model="user.role">
-                                            <label class="form-check-label" for="roleRadio4">人事科</label>
-                                        </div>
+                            <div class="form-group">
+                                <label class="mb-1"><strong>账号</strong></label>
+                                <input type="text" class="form-control" value="" placeholder="请输入您的账号" v-model="user.username">
+                            </div>
+                            <div class="form-group">
+                                <label class="mb-1"><strong>密码</strong></label>
+                                <input type="password" class="form-control" value="" placeholder="请输入您的密码" v-model="user.password">
+                            </div>
+                            <div class="form-row d-flex justify-content-between mt-4 mb-2">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="ruleRadios" id="roleRadio1" value="0" v-model="user.role">
+                                    <label class="form-check-label" for="roleRadio1">一般员工</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="ruleRadios" id="roleRadio2" value="1" v-model="user.role">
+                                    <label class="form-check-label" for="roleRadio2">部门经理</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="ruleRadios" id="roleRadio3" value="2" v-model="user.role">
+                                    <label class="form-check-label" for="roleRadio3">总经理</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="ruleRadios" id="roleRadio4" value="3" v-model="user.role">
+                                    <label class="form-check-label" for="roleRadio4">人事科</label>
+                                </div>
 
-                                    </div>
-                                    <div class="text-center">
-                                        <button type="" class="btn btn-success btn-block" id="loginBtn" @click="login">登录</button>
-                                    </div>
-
+                            </div>
+                            <div class="text-center">
+                                <button type="" class="btn btn-success btn-block" id="loginBtn" @click="login">登录</button>
                             </div>
 
                         </div>
 
                     </div>
+
                 </div>
             </div>
-
         </div>
+
     </div>
+</div>
 </body>
 <script>
     $(function () {
@@ -102,7 +102,7 @@
                         }else {
                             alert(result.message)
                         }
-                    })
+                    });
                 }
             }
         })

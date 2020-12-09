@@ -93,9 +93,11 @@
                         return ;
                     }
                     axios.post(url, this.user).then(function (response) {
-                        this.result = JSON.parse(JSON.stringify(response.data));
+                        vue.result = JSON.parse(JSON.stringify(response.data));
                         console.log(JSON.parse(JSON.stringify(response.data)));
-                        if(this.result['code'] == 0) {
+
+
+                        if(vue.result['code'] == 0) {
                             if(vue.user.role == "0") {
 
                                 location.href="employee_page";
@@ -106,6 +108,7 @@
                         }else {
                             alert(this.result['message']);
                         }
+
                     })
                 }
             }

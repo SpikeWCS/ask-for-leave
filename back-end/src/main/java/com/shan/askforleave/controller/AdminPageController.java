@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 public class AdminPageController {
 
     // 登录页面
-    @RequestMapping("/loginn_page")
+    @RequestMapping("/login_page")
     public String login() {
 
         return "loginPage";

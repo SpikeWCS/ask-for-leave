@@ -9,7 +9,12 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" line="23" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2885b6e2-28f6-4750-848e-825f9466ae42" name="Default Changelist" comment="" />
+    <list default="true" id="2885b6e2-28f6-4750-848e-825f9466ae42" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/shan/askforleave/controller/AdminPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/shan/askforleave/controller/AdminPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/employeePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/employeePage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/littleManagerPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/littleManagerPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/loginPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/loginPage.html" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,10 +29,30 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/LeaveStatus.xml">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/html/employeePage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
+            <state relative-caret-position="934">
+              <caret line="698" selection-start-line="698" selection-end-line="698" />
+              <folding>
+                <element signature="n#style#0;n#el-main#0;n#el-container#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-table#0;n#template#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-form-item#1;n#el-form#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-date-picker#0;n#el-col#0;n#el-form-item#2;n#el-form#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-date-picker#0;n#el-col#2;n#el-form-item#2;n#el-form#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-date-picker#0;n#el-col#0;n#el-form-item#1;n#el-form#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-date-picker#0;n#el-col#2;n#el-form-item#1;n#el-form#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#el-divider#0;n#el-card#0;n#el-col#0;n#el-row#0;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#el-card#0;n#el-col#0;n#el-row#1;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-progress#0;n#div#0;n#el-card#0;n#el-col#0;n#el-row#1;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-progress#1;n#div#0;n#el-card#0;n#el-col#0;n#el-row#1;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-progress#2;n#div#0;n#el-card#0;n#el-col#0;n#el-row#1;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#el-divider#0;n#el-card#0;n#el-col#0;n#el-row#2;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#el-card#0;n#el-col#0;n#el-row#2;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -35,7 +60,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/shan/askforleave/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
+            <state relative-caret-position="190">
               <caret line="36" column="16" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -44,13 +69,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/html/littleManagerPage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+            <state relative-caret-position="801">
+              <caret line="613" column="10" lean-forward="true" selection-start-line="613" selection-start-column="10" selection-end-line="613" selection-end-column="10" />
               <folding>
                 <element signature="n#style#0;n#el-main#0;n#el-container#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-table#0;n#template#0;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-table#0;n#template#0;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#el-col#1;n#el-row#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -59,8 +87,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/shan/askforleave/controller/AdminPageController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="21" column="35" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="35" />
+            <state relative-caret-position="224">
+              <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -68,11 +96,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="46">
+              <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/html/loginPage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="100" column="60" selection-start-line="100" selection-start-column="60" selection-end-line="100" selection-end-column="60" />
+            <state relative-caret-position="1951">
+              <caret line="101" lean-forward="true" selection-start-line="101" selection-end-line="101" />
             </state>
           </provider>
         </entry>
@@ -97,15 +134,6 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/shan/askforleave/pojo/LittleManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -158,6 +186,7 @@
       <find>getUserInfo</find>
       <find>employee_page</find>
       <find>login</find>
+      <find>workingArea</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -195,7 +224,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/mapper/LeaveForm.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/shan/askforleave/service/LeaveFormServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/shan/askforleave/controller/LeaveFormController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/employeePage.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/shan/askforleave/pojo/LeaveStatus.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/shan/askforleave/mapper/LeaveStatusMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/shan/askforleave/service/LeaveFormService.java" />
@@ -205,10 +233,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/shan/askforleave/controller/TestController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/shan/askforleave/pojo/LittleManager.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/littleManagerPage.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/littleManagerPage.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/login.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/shan/askforleave/controller/AdminPageController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/loginPage.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/employeePage.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/html/littleManagerPage.html" />
       </list>
     </option>
   </component>
@@ -662,7 +691,7 @@
       <workItem from="1606890198623" duration="5796000" />
       <workItem from="1607258935692" duration="1901000" />
       <workItem from="1607325664396" duration="53543000" />
-      <workItem from="1607517054070" duration="346000" />
+      <workItem from="1607517054070" duration="4483000" />
     </task>
     <servers />
   </component>
@@ -675,13 +704,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106731000" />
+    <option name="totallyTimeSpent" value="110868000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2353362" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2353362" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -691,7 +720,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.0373494" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.036144577" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -794,13 +823,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3404">
           <caret line="148" column="19" selection-start-line="148" selection-start-column="19" selection-end-line="148" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -1091,40 +1113,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/html/login.html" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/html/employeePage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="n#style#0;n#el-main#0;n#el-container#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/LeaveStatus.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
           <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/shan/askforleave/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="36" column="16" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/html/littleManagerPage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-          <folding>
-            <element signature="n#style#0;n#el-main#0;n#el-container#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1177,10 +1169,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/shan/askforleave/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="36" column="16" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/shan/askforleave/controller/AdminPageController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="21" column="35" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="35" />
+        <state relative-caret-position="224">
+          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1189,8 +1198,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/html/loginPage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="100" column="60" selection-start-line="100" selection-start-column="60" selection-end-line="100" selection-end-column="60" />
+        <state relative-caret-position="1951">
+          <caret line="101" lean-forward="true" selection-start-line="101" selection-end-line="101" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/html/employeePage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="934">
+          <caret line="698" selection-start-line="698" selection-end-line="698" />
+          <folding>
+            <element signature="n#style#0;n#el-main#0;n#el-container#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-table#0;n#template#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-form-item#1;n#el-form#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-date-picker#0;n#el-col#0;n#el-form-item#2;n#el-form#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-date-picker#0;n#el-col#2;n#el-form-item#2;n#el-form#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-date-picker#0;n#el-col#0;n#el-form-item#1;n#el-form#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-date-picker#0;n#el-col#2;n#el-form-item#1;n#el-form#0;n#el-card#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#el-divider#0;n#el-card#0;n#el-col#0;n#el-row#0;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#el-card#0;n#el-col#0;n#el-row#1;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-progress#0;n#div#0;n#el-card#0;n#el-col#0;n#el-row#1;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-progress#1;n#div#0;n#el-card#0;n#el-col#0;n#el-row#1;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-progress#2;n#div#0;n#el-card#0;n#el-col#0;n#el-row#1;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#el-divider#0;n#el-card#0;n#el-col#0;n#el-row#2;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#el-card#0;n#el-col#0;n#el-row#2;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/html/littleManagerPage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="801">
+          <caret line="613" column="10" lean-forward="true" selection-start-line="613" selection-start-column="10" selection-end-line="613" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#el-main#0;n#el-container#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-table#0;n#template#0;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-table#0;n#template#0;n#el-col#0;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#el-col#1;n#el-row#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
